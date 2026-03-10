@@ -4,55 +4,55 @@ import { AirVent, Wrench, Wind, Zap, Droplets, ThermometerSnowflake, ArrowRight,
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import CTAStrip from "@/components/CTAStrip";
+import SEO from "@/components/SEO";
+import serviceHvac from "@/assets/service-hvac.png";
+import serviceDucting from "@/assets/service-ducting.png";
+import serviceMep from "@/assets/service-mep.png";
+import serviceIndustrial from "@/assets/service-industrial.png";
 
 const services = [
   {
     icon: AirVent,
-    title: "HVAC Installation",
-    description: "End-to-end HVAC system design and installation for residential, commercial, and industrial buildings. We handle everything from load calculations to commissioning.",
-    includes: ["System design & engineering", "Equipment procurement", "Installation & piping", "Testing & commissioning", "As-built documentation"],
-    idealFor: ["Commercial offices", "Residential towers", "Retail spaces"],
-  },
-  {
-    icon: Wrench,
-    title: "HVAC Maintenance & AMC",
-    description: "Preventive and corrective maintenance contracts that ensure your HVAC systems run at peak efficiency year-round, minimizing downtime and energy costs.",
-    includes: ["Scheduled preventive maintenance", "Emergency breakdown support", "Filter & coil cleaning", "Refrigerant top-up", "Performance reporting"],
-    idealFor: ["Building owners", "Facility managers", "Industrial plants"],
+    title: "HVAC Installation & AMC Services",
+    description: "Complete HVAC system design and execution for residential and commercial buildings, specialized for the UAE climate with comprehensive AMC support.",
+    includes: ["System design & engineering", "Installation & Commissioning", "Preventive Maintenance", "AMC Contracts", "24/48hr Response"],
+    idealFor: ["Luxury Villas", "Commercial Towers", "Retail Units"],
+    image: serviceHvac,
   },
   {
     icon: Wind,
-    title: "Ventilation & Ducting",
-    description: "Precision GI duct fabrication and installation for optimal air distribution, fresh air intake, and exhaust systems across all building types.",
-    includes: ["GI duct fabrication", "Duct installation & insulation", "Kitchen exhaust systems", "Smoke extraction", "Air balancing"],
-    idealFor: ["Restaurants & kitchens", "Basements & parking", "Warehouses"],
+    title: "Ventilation, Ducting & Exhaust",
+    description: "GI duct fabrication and installation for fresh air, kitchen exhaust, and smoke management systems following international standards.",
+    includes: ["GI duct fabrication", "Kitchen exhaust systems", "Fresh air intake", "Smoke extraction", "Air balancing"],
+    idealFor: ["Restaurants", "Industrial Warehouses", "Basements"],
+    image: serviceDucting,
   },
   {
     icon: Zap,
-    title: "Electrical Works",
-    description: "Complete electrical infrastructure from power distribution boards to lighting, cabling, and control systems for new builds and retrofits.",
-    includes: ["Power distribution", "Cable tray & trunking", "Lighting systems", "DB & panel installation", "Earthing & bonding"],
-    idealFor: ["New construction", "Fit-out projects", "Industrial facilities"],
-  },
-  {
-    icon: Droplets,
-    title: "Plumbing Works",
-    description: "Professional plumbing services covering water supply, drainage, sanitary systems, and firefighting infrastructure to code.",
-    includes: ["Water supply systems", "Drainage & sewage", "Sanitary installations", "Firefighting piping", "Water tank installation"],
-    idealFor: ["Villas & apartments", "Commercial buildings", "Warehouses"],
+    title: "Electrical & Plumbing Works",
+    description: "Full Mechanical, Electrical, and Plumbing (MEP) contracting including power distribution, drainage, and water supply infrastructure.",
+    includes: ["Power distribution", "Water supply systems", "Drainage infrastructure", "Lighting installations", "Firefighting piping"],
+    idealFor: ["New Projects", "Building Retrofits", "Industrial Parks"],
+    image: serviceMep,
   },
   {
     icon: ThermometerSnowflake,
-    title: "Industrial Cooling Systems",
-    description: "Specialized cooling solutions for warehouses, manufacturing plants, and large-scale industrial facilities with harsh environment requirements.",
-    includes: ["Evaporative cooling", "Chiller systems", "Process cooling", "Cold storage solutions", "Ventilation design"],
-    idealFor: ["Warehouses", "Factories", "Food & beverage plants"],
+    title: "Industrial HVAC Systems",
+    description: "Large-scale climate control and process cooling solutions for factories, warehouses, and industrial plants across the UAE.",
+    includes: ["Process cooling", "Factory ventilation", "Warehouse climate control", "Cold storage", "Chiller maintenance"],
+    idealFor: ["Factories", "Logistics Hubs", "Cold Storage Units"],
+    image: serviceIndustrial,
   },
 ];
 
 const Services = () => {
   return (
     <>
+      <SEO 
+        title="Our Services | HVAC Installation & MEP Solutions"
+        description="Comprehensive HVAC installation, maintenance, AMC, ventilation, ducting, electrical and plumbing services across the UAE for all building types."
+        canonical="https://chillmaster.ae/services"
+      />
       {/* Hero */}
       <section className="bg-navy section-padding">
         <div className="container-content">
@@ -113,18 +113,26 @@ const Services = () => {
                 </Button>
               </div>
 
-              <div className={`rounded-lg border border-border/60 bg-steel p-6 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Ideal For</h4>
-                <div className="flex flex-wrap gap-2">
-                  {service.idealFor.map((tag) => (
-                    <span key={tag} className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
-                      {tag}
-                    </span>
-                  ))}
+              <div className="relative group">
+                <div className="overflow-hidden rounded-2xl shadow-xl shadow-primary/5 border border-primary/10">
+                  <img 
+                    src={service.image} 
+                    alt={service.title} 
+                    className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  
+                  {/* Floating Overlay Info */}
+                  <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end max-w-[80%]">
+                    {service.idealFor.map((tag) => (
+                      <span key={tag} className="rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold text-primary shadow-sm border border-primary/10">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-6 rounded-lg border border-border/40 bg-card p-5">
-                  <p className="text-xs text-muted-foreground">
-                    Need this service for your project? Get a tailored proposal with scope, timeline, and pricing.
+                <div className="mt-4 rounded-xl border border-dashed border-primary/20 bg-primary/5 p-4">
+                  <p className="text-xs font-medium text-primary/80">
+                    <span className="font-bold">Ideal for:</span> {service.idealFor.join(", ")}
                   </p>
                 </div>
               </div>

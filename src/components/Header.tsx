@@ -48,9 +48,9 @@ const Header = () => {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a href="tel:+971000000000" className="flex items-center gap-1.5 text-sm text-navy-foreground/70 hover:text-navy-foreground transition-colors">
+          <a href="tel:+971507002525" className="flex items-center gap-1.5 text-sm text-navy-foreground/70 hover:text-navy-foreground transition-colors">
             <Phone className="h-4 w-4" />
-            <span className="font-mono">+971 XX XXX XXXX</span>
+            <span className="font-mono">+971 50 700 2525</span>
           </a>
           <Button asChild size="sm" className="rounded-lg font-heading font-semibold">
             <Link to="/contact">Request a Quote</Link>
@@ -92,8 +92,8 @@ const Header = () => {
                 </Link>
               ))}
               <div className="mt-2 flex flex-col gap-2">
-                <a href="tel:+971000000000" className="flex items-center gap-2 px-4 py-2 text-sm text-navy-foreground/70">
-                  <Phone className="h-4 w-4" /> +971 XX XXX XXXX
+                <a href="tel:+971507002525" className="flex items-center gap-2 px-4 py-2 text-sm text-navy-foreground/70">
+                  <Phone className="h-4 w-4" /> +971 50 700 2525
                 </a>
                 <Button asChild className="rounded-lg font-heading font-semibold">
                   <Link to="/contact" onClick={() => setMobileOpen(false)}>Request a Quote</Link>

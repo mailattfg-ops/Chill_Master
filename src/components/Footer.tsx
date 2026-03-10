@@ -17,7 +17,7 @@ const Footer = () => {
             <p className="text-sm text-navy-foreground/60 leading-relaxed">
               Professional HVAC & MEP solutions for residential, commercial, and industrial projects across the UAE.
             </p>
-            <p className="mt-3 text-xs text-navy-foreground/40">
+            <p className="mt-3 text-xs text-navy-foreground/40 italic">
               Part of Jowhar A. Group of Companies
             </p>
           </div>
@@ -63,9 +63,9 @@ const Footer = () => {
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-navy-foreground/50">Contact</h4>
             <div className="flex flex-col gap-3">
-              <a href="tel:+971000000000" className="flex items-start gap-2 text-sm text-navy-foreground/60 hover:text-primary transition-colors">
+              <a href="tel:+971507002525" className="flex items-start gap-2 text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0" />
-                +971 XX XXX XXXX
+                +971 50 700 2525
               </a>
               <a href="mailto:info@chillmaster.ae" className="flex items-start gap-2 text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0" />

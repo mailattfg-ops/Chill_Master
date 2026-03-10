@@ -68,6 +68,9 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    background-image: radial-gradient(rgba(42, 90, 254, 0.07) 1.5px, transparent 1.5px);
+    background-size: 32px 32px;
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
