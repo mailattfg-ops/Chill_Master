@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Montserrat", "sans-serif"],
-        body: ["Open Sans", "sans-serif"],
-        mono: ["Inter", "monospace"],
+        heading: ["Outfit", "sans-serif"],
+        body: ["Plus Jakarta Sans", "sans-serif"],
+        mono: ["monospace"],
       },
       colors: {
         border: "hsl(var(--border))",

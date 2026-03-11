@@ -16,7 +16,7 @@ const ProjectCard = ({ image, title, location, tags, description, index }: Proje
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group overflow-hidden rounded-lg border border-border/60 bg-card transition-all hover:shadow-md"
+      className="group overflow-hidden rounded-none border border-border/60 bg-card transition-all hover:shadow-md"
     >
       <div className="aspect-[4/3] overflow-hidden">
         <img
@@ -29,7 +29,7 @@ const ProjectCard = ({ image, title, location, tags, description, index }: Proje
       <div className="p-5">
         <div className="mb-2 flex flex-wrap gap-1.5">
           {tags.map((tag) => (
-            <span key={tag} className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary">
+            <span key={tag} className="rounded-none bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary">
               {tag}
             </span>
           ))}

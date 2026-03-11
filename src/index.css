@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -34,7 +34,7 @@
     --input: 213 20% 90%;
     --ring: 214 83% 56%;
 
-    --radius: 1rem;
+    --radius: 0rem;
 
     --navy: 210 72% 10%;
     --navy-foreground: 0 0% 100%;
@@ -67,10 +67,21 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply bg-background text-foreground font-body antialiased overflow-x-hidden w-full;
     background-image: radial-gradient(rgba(42, 90, 254, 0.07) 1.5px, transparent 1.5px);
     background-size: 32px 32px;
     background-attachment: fixed;
+  }
+
+  html {
+    @apply overflow-x-hidden;
+    font-size: 14px;
+  }
+
+  @screen md {
+    html {
+      font-size: 16px;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -80,11 +91,18 @@
 
 @layer utilities {
   .section-padding {
-    @apply py-20 md:py-24 lg:py-28;
+    @apply py-16 md:py-24 lg:py-28;
   }
 
   .container-content {
-    @apply max-w-[1200px] mx-auto px-5 md:px-6;
+    @apply mx-auto w-full max-w-7xl px-8;
+  }
+
+  .bg-grid-lines {
+    background-image: 
+      linear-gradient(to right, theme('colors.slate.200') 1px, transparent 1px),
+      linear-gradient(to bottom, theme('colors.slate.200') 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   .text-gradient {

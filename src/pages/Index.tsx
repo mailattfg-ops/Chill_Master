@@ -51,7 +51,14 @@ const Index = () => {
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="HVAC systems on UAE rooftop" className="h-full w-full object-cover opacity-30" />
+          <img 
+            src={heroBg} 
+            alt="HVAC systems on UAE rooftop" 
+            className="h-full w-full object-cover opacity-30" 
+            loading="eager"
+            // @ts-ignore
+            fetchpriority="high"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70" />
         </div>
 
@@ -63,9 +70,9 @@ const Index = () => {
 
         <div className="container-content relative z-10 py-24 md:py-32 lg:py-40">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.4 }}
             className="max-w-2xl"
           >
             <h1 className="text-4xl font-bold leading-tight tracking-tight text-navy-foreground md:text-5xl lg:text-6xl">
@@ -76,7 +83,7 @@ const Index = () => {
               Installation, maintenance, ducting, ventilation, electrical and plumbing for residential, commercial, and industrial projects.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-lg font-heading font-semibold">
+              <Button asChild size="lg" className="rounded-none font-heading font-semibold">
                 <Link to="/contact">
                   Request a Quote <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
@@ -85,7 +92,7 @@ const Index = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="rounded-lg border-navy-foreground/20 bg-transparent font-heading font-semibold text-navy-foreground hover:bg-navy-foreground/5"
+                className="rounded-none border-navy-foreground/20 bg-transparent font-heading font-semibold text-navy-foreground hover:bg-navy-foreground/5"
               >
                 <a href="https://wa.me/971507002525" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-1.5 h-4 w-4" /> WhatsApp Us
@@ -97,7 +104,7 @@ const Index = () => {
             <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-navy-foreground/10 pt-6">
               {trustItems.map((item) => (
                 <span key={item} className="flex items-center gap-1.5 text-xs font-medium text-navy-foreground/50">
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-glow" />
+                  <span className="h-1.5 w-1.5 rounded-none bg-cyan-glow" />
                   {item}
                 </span>
               ))}
@@ -108,14 +115,19 @@ const Index = () => {
 
       {/* Services Snapshot */}
       <section className="section-padding relative overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
+        {/* Background with Grid and Image */}
+        <div className="absolute inset-0 z-0 bg-slate-50/50">
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: `linear-gradient(to right, #3b82f6 1px, transparent 1px), 
+                              linear-gradient(to bottom, #3b82f6 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }} />
           <img 
             src="/service_bg.jpg" 
             alt="" 
             className="h-full w-full object-cover opacity-10"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/80" />
         </div>
 
         <div className="container-content relative z-10">
@@ -131,7 +143,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
       {/* About + Group */}
       <section className="section-padding relative overflow-hidden bg-white">
         {/* Background Industrial Image */}
@@ -139,58 +150,58 @@ const Index = () => {
           <img 
             src={industrialBg} 
             alt="" 
-            className="h-full w-full object-cover opacity-20"
+            className="h-full w-full object-cover opacity-30"
+            loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
-          <div className="absolute inset-0 bg-blue-50/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60" />
         </div>
+        
         <div className="container-content relative z-10">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="mb-3 inline-block rounded-full border border-primary/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+          <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+            <div className="rounded-none border border-primary/20 bg-white/60 p-8 sm:p-12 backdrop-blur-xl shadow-2xl shadow-primary/5 w-full relative group overflow-hidden">
+              {/* Subtle decor */}
+              <div className="absolute top-0 right-0 h-24 w-24 bg-primary/5 -mr-12 -mt-12 rotate-45 transition-transform group-hover:bg-primary/10" />
+              
+              <span className="mb-6 inline-block rounded-none border border-primary/20 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-primary bg-white shadow-sm">
                 About Us
               </span>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                Backed by an Industrial Group with Proven Delivery
+              <h2 className="text-xl font-bold tracking-tight text-navy md:text-4xl lg:text-5xl leading-[1.1] mb-6 md:mb-8">
+                Backed by an <span className="text-primary">Industrial Group</span> <br className="hidden md:block" /> with Proven Delivery
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              <p className="mt-4 md:mt-6 text-sm md:text-base lg:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto font-medium">
                 Chill Master is part of an industrial group led by Mr. Jowhar A., an established industrial empire in the UAE. Our group ecosystem brings integrated support, from building contracting to steel fabrication and lubricant manufacturing.
               </p>
-              <Button asChild variant="outline" className="mt-8 rounded-lg font-heading font-semibold border-primary/20 hover:bg-primary/5 shadow-sm">
-                <Link to="/about">
-                  Learn About Our Group <ArrowRight className="ml-1.5 h-4 w-4 text-primary" />
-                </Link>
-              </Button>
-            </motion.div>
+              <div className="mt-10 flex justify-center">
+                <Button asChild className="h-14 md:h-16 px-6 md:px-10 rounded-none font-heading font-black bg-navy text-white hover:bg-primary transition-all uppercase tracking-widest text-[10px] md:text-xs shadow-xl w-full max-w-[280px] sm:max-w-none sm:w-auto">
+                  <Link to="/about" className="flex items-center justify-center gap-2">
+                    Learn About Our Group <ArrowRight className="hidden md:block h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="grid gap-6"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-12 md:mt-20 w-full"
             >
-              {/* Group Company Cards */}
-              {[
-                { name: "Flash Building Contracting L.L.C", sub: "General & Civil Contracting", icon: Building2 },
-                { name: "Al Baraq Steel Works L.L.C", sub: "Steel Fabrication & Structural", icon: Wrench },
-                { name: "Al Baraq (Dufe Lub)", sub: "Industrial Lubricant Mfg.", icon: Droplets },
-              ].map((co) => (
-                <div key={co.name} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 rounded-2xl border border-primary/20 bg-white/40 p-5 sm:p-6 backdrop-blur-xl shadow-lg shadow-primary/10 transition-all hover:bg-white/60 hover:shadow-xl hover:shadow-primary/20">
-                  <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#4175FF] to-[#123FFF] shadow-blue-200 shadow-lg">
-                    <co.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+              <div className="grid gap-6 md:grid-cols-3">
+                {[
+                  { name: "Flash Building Contracting L.L.C", sub: "General & Civil Contracting", icon: Building2 },
+                  { name: "Al Baraq Steel Works L.L.C", sub: "Steel Fabrication & Structural", icon: Wrench },
+                  { name: "Al Baraq (Dufe Lub)", sub: "Industrial Lubricant Mfg.", icon: Droplets },
+                ].map((co, i) => (
+                  <div key={co.name} className="flex flex-col items-center text-center p-6 sm:p-8 rounded-none border border-slate-100 bg-white/80 backdrop-blur-md shadow-lg transition-all hover:border-primary/30 hover:shadow-2xl hover:-translate-y-1">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-none bg-navy text-white mb-6 shadow-md transition-transform hover:scale-110">
+                      <co.icon className="h-6 w-6" />
+                    </div>
+                    <h4 className="text-sm font-bold text-navy leading-tight mb-2 uppercase tracking-wide px-2">{co.name}</h4>
+                    <p className="text-[9px] font-black text-primary uppercase tracking-[0.15em]">{co.sub}</p>
                   </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-bold text-foreground leading-tight">{co.name}</h4>
-                    <p className="mt-1 text-xs font-medium text-primary/70">{co.sub}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -202,9 +213,9 @@ const Index = () => {
       <section className="py-16 md:py-20 relative bg-transparent">
         {/* Top Centered Pill */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden xl:block">
-          <div className="flex items-center gap-3 rounded-full border border-border bg-white px-6 py-3 shadow-xl shadow-primary/5">
+          <div className="flex items-center gap-3 rounded-none border border-border bg-white px-6 py-3 shadow-xl shadow-primary/5">
             <span className="text-sm font-bold text-foreground">Why Choose Us</span>
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-navy text-[10px] font-bold text-white">
+            <div className="flex h-7 w-7 items-center justify-center rounded-none bg-navy text-[10px] font-bold text-white">
               03
             </div>
           </div>
@@ -241,7 +252,7 @@ const Index = () => {
                   { icon: CheckCircle2, title: "QC Standards", desc: "Rigorous quality checks at every stage of execution." },
                 ].map((item, i) => (
                   <div key={item.title} className="group">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg shadow-primary/5 border border-primary/5 transition-all group-hover:bg-primary group-hover:text-white">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-none bg-white shadow-lg shadow-primary/5 border border-primary/5 transition-all group-hover:bg-primary group-hover:text-white">
                       <item.icon className="h-6 w-6 text-primary group-hover:text-white" />
                     </div>
                     <h4 className="text-lg font-bold text-foreground mb-1">{item.title}</h4>
@@ -260,9 +271,9 @@ const Index = () => {
               className="relative mt-8 lg:mt-0"
             >
               {/* Decorative circle */}
-              <div className="absolute -right-12 top-12 h-48 w-48 lg:h-64 lg:w-64 rounded-full border-[1.5rem] border-primary/10 -z-10 hidden sm:block" />
+              <div className="absolute -right-12 top-12 h-48 w-48 lg:h-64 lg:w-64 rounded-none border-[1.5rem] border-primary/10 -z-10 hidden sm:block" />
               
-              <div className="relative overflow-hidden rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl shadow-navy/20 border-4 lg:border-8 border-white max-w-[500px] mx-auto lg:max-w-none">
+              <div className="aspect-[16/10] overflow-hidden rounded-none shadow-2xl shadow-primary/10 border-4 sm:border-8 border-white max-w-[500px] mx-auto lg:max-w-none">
                 <img 
                   src={whyChooseUsImg} 
                   alt="Professional engineering team" 
@@ -271,7 +282,7 @@ const Index = () => {
               </div>
               
               {/* Floating Stat Card */}
-              <div className="relative lg:absolute -mt-8 lg:mt-0 lg:-bottom-6 lg:left-12 lg:right-12 rounded-2xl bg-white p-4 lg:p-6 shadow-xl border border-primary/5 flex items-center justify-between max-w-[400px] mx-auto lg:max-w-none z-30">
+              <div className="relative lg:absolute -mt-8 lg:mt-0 lg:-bottom-6 lg:left-12 lg:right-12 rounded-none bg-white p-4 lg:p-6 shadow-xl border border-primary/5 flex items-center justify-between max-w-[400px] mx-auto lg:max-w-none z-30">
                 <div className="flex-1 text-center lg:text-left">
                   <div className="text-xl lg:text-2xl font-black text-navy leading-tight">2025</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-0.5">Established</div>
@@ -288,8 +299,18 @@ const Index = () => {
       </section>
 
       {/* Projects Preview */}
-      <section className="section-padding bg-steel">
-        <div className="container-content">
+      <section className="section-padding relative overflow-hidden bg-slate-50/50">
+        {/* Background Grid */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 opacity-[0.15]" style={{
+            backgroundImage: `linear-gradient(to right, #3b82f6 1px, transparent 1px), 
+                              linear-gradient(to bottom, #3b82f6 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+        </div>
+
+        <div className="container-content relative z-10">
           <SectionHeading
             tag="Our Projects"
             title="Proven Track Record Across Sectors"
@@ -301,7 +322,7 @@ const Index = () => {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Button asChild variant="outline" className="rounded-lg font-heading font-semibold">
+            <Button asChild variant="outline" className="rounded-none font-heading font-semibold">
               <Link to="/projects">
                 View All Projects <ArrowRight className="ml-1.5 h-4 w-4" />
               </Link>

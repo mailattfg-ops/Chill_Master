@@ -27,7 +27,7 @@ const CTAStrip = ({
           asChild
           size="lg"
           variant="secondary"
-          className="mt-6 rounded-lg font-heading font-semibold"
+          className="mt-6 rounded-none font-heading font-semibold"
         >
           <Link to="/contact">
             Request a Quote <ArrowRight className="ml-1.5 h-4 w-4" />

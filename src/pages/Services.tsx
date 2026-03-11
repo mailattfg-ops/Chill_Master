@@ -76,7 +76,7 @@ const Services = () => {
       </section>
 
       {/* Services Detail */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-background bg-grid-lines relative overflow-hidden">
         <div className="container-content space-y-16">
           {services.map((service, i) => (
             <motion.div
@@ -142,7 +142,7 @@ const Services = () => {
       </section>
 
       {/* AMC Section */}
-      <section className="section-padding bg-steel">
+      <section className="section-padding bg-steel bg-grid-lines relative overflow-hidden">
         <div className="container-content">
           <SectionHeading
             tag="AMC Plans"
@@ -161,10 +161,10 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`rounded-lg border bg-card p-6 ${i === 2 ? "border-primary" : "border-border/60"}`}
+                className={`rounded-none border bg-card p-6 ${i === 2 ? "border-primary" : "border-border/60"}`}
               >
                 {i === 2 && (
-                  <span className="mb-3 inline-block rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground">
+                  <span className="mb-3 inline-block rounded-none bg-primary px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground">
                     Most Popular
                   </span>
                 )}

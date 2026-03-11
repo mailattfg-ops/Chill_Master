@@ -21,9 +21,9 @@ const ServiceCard = ({ icon: Icon, title, description, tag, index }: ServiceCard
     >
       <Link
         to="/services"
-        className="group relative flex h-full flex-col rounded-2xl border border-primary/40 bg-white p-8 shadow-xl shadow-primary/10 transition-all hover:-translate-y-1 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/20"
+        className="group relative flex h-full flex-col rounded-none border border-primary/40 bg-white p-8 shadow-xl shadow-primary/10 transition-all hover:-translate-y-1 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/20"
       >
-        <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+        <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-none bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
           <Icon className="h-7 w-7" />
         </div>
         

@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-1.5 mb-4">
-              <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
+              <div className="h-8 w-8 rounded-none bg-primary flex items-center justify-center">
                 <span className="text-sm font-bold text-primary-foreground font-heading">CM</span>
               </div>
               <span className="text-lg font-bold font-heading tracking-tight">Chill Master</span>

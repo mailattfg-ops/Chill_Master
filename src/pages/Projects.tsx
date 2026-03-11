@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, Home, LayoutDashboard, Factory, Search, MapPin, Tag, ChevronRight } from "lucide-react";
 import projectOffice from "@/assets/project-office.png";
@@ -6,6 +7,9 @@ import projectWarehouse from "@/assets/project-warehouse.png";
 import projectVilla from "@/assets/project-villa.png";
 import projectMall from "@/assets/project-mall.png";
 import projectFood from "@/assets/project-food.png";
+import avatar1 from "@/assets/avatar1.png";
+import avatar2 from "@/assets/avatar2.png";
+import avatar3 from "@/assets/avatar3.png";
 import ProjectCard from "@/components/ProjectCard";
 import CTAStrip from "@/components/CTAStrip";
 import SEO from "@/components/SEO";
@@ -106,7 +110,7 @@ const Projects = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-background text-foreground">
+      <section className="section-padding bg-background text-foreground bg-grid-lines relative overflow-hidden">
         <div className="container-content">
           {/* Filters */}
           <div className="mb-10 flex flex-wrap gap-2">
@@ -114,7 +118,7 @@ const Projects = () => {
               <button
                 key={f.id}
                 onClick={() => setActiveFilter(f.id)}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-none border px-4 py-2 text-sm font-medium transition-colors ${
                   activeFilter === f.id
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"
@@ -148,14 +152,18 @@ const Projects = () => {
           
           {/* Load More/CTA */}
           <div className="mt-20 text-center">
-            <div className="inline-flex items-center gap-3 p-2 bg-steel/50 rounded-full border border-border">
+            <Link to="/contact" className="inline-flex items-center gap-4 p-2.5 bg-white rounded-full border border-slate-200 shadow-xl hover:shadow-2xl hover:border-primary/20 transition-all group">
               <div className="flex -space-x-3 ml-2">
-                {[1,2,3].map(i => (
-                  <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-gray-200" />
+                {[avatar1, avatar2, avatar3].map((img, i) => (
+                  <div key={i} className="h-11 w-11 rounded-full border-2 border-white overflow-hidden shadow-md">
+                    <img src={img} alt={`Engineer ${i + 1}`} className="h-full w-full object-cover" />
+                  </div>
                 ))}
               </div>
-              <p className="text-sm font-medium mr-4">Have a project in mind? <span className="text-primary font-bold">Contact our engineers.</span></p>
-            </div>
+              <p className="text-sm font-medium mr-5 text-navy">
+                Have a project in mind? <span className="text-primary font-bold group-hover:underline underline-offset-4">Contact our engineers.</span>
+              </p>
+            </Link>
           </div>
         </div>
       </section>

@@ -18,7 +18,7 @@ const SectionHeading = ({ tag, title, description, align = "center", light = fal
       className={`mb-12 ${align === "center" ? "text-center" : "text-left"}`}
     >
       {tag && (
-        <span className={`mb-3 inline-block rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider ${
+        <span className={`mb-3 inline-block rounded-none border px-3 py-1 text-xs font-semibold uppercase tracking-wider ${
           light ? "border-navy-foreground/20 text-navy-foreground/60" : "border-primary/20 text-primary"
         }`}>
           {tag}

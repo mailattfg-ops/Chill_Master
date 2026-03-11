@@ -3,6 +3,13 @@ import { Building2, Eye, Target, ShieldCheck, ClipboardCheck, Truck, Wrench, Che
 import SectionHeading from "@/components/SectionHeading";
 import CTAStrip from "@/components/CTAStrip";
 import SEO from "@/components/SEO";
+import aboutHeroBg from "@/assets/group-bg.png";
+import visionImg from "@/assets/vision-concept.png";
+import missionImg from "@/assets/mission-execution.png";
+
+import flashThumb from "@/assets/flash-thumb.png";
+import steelThumb from "@/assets/steel-thumb.png";
+import lubThumb from "@/assets/lubricants-thumb.png";
 
 const processSteps = [
   { icon: ClipboardCheck, title: "Survey & Assessment", description: "Detailed site survey and requirements analysis." },
@@ -13,9 +20,24 @@ const processSteps = [
 ];
 
 const groupCompanies = [
-  { name: "Flash Building Contracting L.L.C", description: "General and civil contracting company with offices in Ajman, Sharjah, and Umm Al Quwain." },
-  { name: "Al Baraq Steel Works L.L.C", description: "Ajman-based steel fabrication and structural works with operations across Dubai, Ajman, UAQ, and RAK." },
-  { name: "Al Baraq Lubricant (Dufe Lub)", description: "Umm Al Quwain-based manufacturer of ECAS-certified industrial and automotive lubricants." },
+  { 
+    name: "Flash Building Contracting L.L.C", 
+    description: "General and civil contracting company with offices in Ajman, Sharjah, and Umm Al Quwain.",
+    image: flashThumb,
+    tag: "Contracting"
+  },
+  { 
+    name: "Al Baraq Steel Works L.L.C", 
+    description: "Ajman-based steel fabrication and structural works with operations across Dubai, Ajman, UAQ, and RAK.",
+    image: steelThumb,
+    tag: "Steel Industry"
+  },
+  { 
+    name: "Al Baraq Lubricant (Dufe Lub)", 
+    description: "Umm Al Quwain-based manufacturer of ECAS-certified industrial and automotive lubricants.",
+    image: lubThumb,
+    tag: "Manufacturing"
+  },
 ];
 
 const About = () => {
@@ -27,12 +49,23 @@ const About = () => {
         canonical="https://chillmaster.ae/about"
       />
       {/* Hero */}
-      <section className="bg-navy section-padding">
-        <div className="container-content">
+      <section className="relative bg-navy section-padding overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={aboutHeroBg} 
+            alt="Engineering background" 
+            className="h-full w-full object-cover opacity-20"
+            loading="eager"
+            // @ts-ignore
+            fetchpriority="high"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70" />
+        </div>
+        <div className="container-content relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="max-w-2xl"
           >
             <span className="mb-3 inline-block rounded-full border border-navy-foreground/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-navy-foreground/60">
@@ -59,7 +92,7 @@ const About = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="section-padding bg-background relative overflow-hidden">
+      <section className="section-padding bg-background bg-grid-lines relative overflow-hidden">
         <div className="container-content">
           <SectionHeading
             tag="Strategic Direction"
@@ -67,50 +100,94 @@ const About = () => {
             description="Leading the HVAC & MEP industry through precision, reliability, and engineering excellence."
           />
           
-          <div className="grid gap-8 lg:grid-cols-2 mt-12">
-            {[
-              { 
-                icon: Eye, 
-                title: "Our Vision", 
-                text: "To be the most trusted HVAC & MEP partner for developers, contractors, and facility owners in the UAE — known for engineering precision and responsive execution.",
-                color: "primary"
-              },
-              { 
-                icon: Target, 
-                title: "Our Mission", 
-                text: "To deliver end-to-end mechanical, electrical, and plumbing solutions with documented quality, safety compliance, and on-time project delivery.",
-                color: "navy"
-              },
-            ].map((item, i) => (
+          <div className="mt-16 space-y-24 md:space-y-32">
+            {/* Vision Section */}
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="group relative overflow-hidden rounded-[2.5rem] bg-white p-8 md:p-12 shadow-2xl shadow-navy/[0.03] border border-border/50"
+                transition={{ duration: 0.7 }}
               >
-                <div className="relative z-10">
-                  <div className={`mb-8 flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-50 transition-colors group-hover:bg-primary/5`}>
-                    <item.icon className="h-10 w-10 text-primary" />
-                  </div>
-                  
-                  <h3 className="mb-4 text-3xl font-bold text-foreground">{item.title}</h3>
-                  <p className="text-lg leading-relaxed text-muted-foreground font-medium">
-                    {item.text}
-                  </p>
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+                  <Eye className="h-7 w-7 text-primary" />
                 </div>
-                <div className="absolute right-0 bottom-0 opacity-[0.02] translate-x-1/4 translate-y-1/4 pointer-events-none">
-                  <item.icon className="w-64 h-64" />
+                <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Our Vision</h3>
+                <p className="text-lg leading-relaxed text-muted-foreground font-medium">
+                  To be the most trusted HVAC & MEP partner for developers, contractors, and facility owners in the UAE — known for engineering precision and responsive execution.
+                </p>
+                <div className="mt-8 flex items-center gap-4 border-l-4 border-primary pl-6 py-2">
+                  <span className="text-sm font-bold text-foreground/80 uppercase tracking-widest italic">Innovation • Precision • Trust</span>
                 </div>
               </motion.div>
-            ))}
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="aspect-[16/10] overflow-hidden rounded-none shadow-2xl shadow-primary/10 border-4 sm:border-8 border-white">
+                  <img src={visionImg} alt="Vision concept" className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" loading="lazy" />
+                </div>
+                <div className="absolute -bottom-6 -left-6 h-32 w-32 rounded-none bg-navy p-6 flex items-center justify-center hidden md:flex">
+                  <div className="h-full w-full rounded-none border border-white/20 flex flex-col items-center justify-center">
+                    <span className="text-2xl font-black text-white leading-none">2025</span>
+                    <span className="text-[8px] text-white/60 font-bold uppercase tracking-widest mt-1">Vision</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Mission Section */}
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="order-2 lg:order-1 relative"
+              >
+                <div className="aspect-[16/10] overflow-hidden rounded-none shadow-2xl shadow-navy/10 border-4 sm:border-8 border-white">
+                  <img src={missionImg} alt="Mission execution" className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" loading="lazy" />
+                </div>
+                <div className="absolute -top-6 -right-6 h-32 w-32 rounded-none bg-primary p-6 flex items-center justify-center hidden md:flex">
+                  <div className="h-full w-full rounded-none border border-white/20 flex flex-col items-center justify-center">
+                    <Target className="h-8 w-8 text-white" />
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="order-1 lg:order-2"
+              >
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-none bg-navy/10">
+                  <Target className="h-7 w-7 text-navy" />
+                </div>
+                <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Our Mission</h3>
+                <p className="text-lg leading-relaxed text-muted-foreground font-medium">
+                  To deliver end-to-end mechanical, electrical, and plumbing solutions with documented quality, safety compliance, and on-time project delivery.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {["Quality QC", "HSE Safety", "Timely Delivery"].map(tag => (
+                    <span key={tag} className="px-4 py-2 rounded-none bg-slate-50 border border-slate-100 text-xs font-bold text-slate-600">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Group Ecosystem */}
-      <section className="section-padding bg-slate-50">
+      <section className="section-padding bg-slate-50 relative overflow-hidden bg-grid-lines">
         <div className="container-content">
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">Group Ecosystem</span>
@@ -118,21 +195,31 @@ const About = () => {
             <p className="text-muted-foreground">Integrated industrial support and delivery standards across contracting, steel, and manufacturing.</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-3">
             {groupCompanies.map((co, i) => (
               <motion.div
                 key={co.name}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="group rounded-3xl border border-white bg-white/80 backdrop-blur-sm p-8 shadow-xl shadow-navy/[0.02] transition-all hover:bg-white hover:shadow-2xl hover:shadow-navy/[0.05]"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group overflow-hidden rounded-none border border-white bg-white shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl"
               >
-                <div className="mb-6 h-14 w-14 rounded-2xl bg-primary/5 flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-white">
-                  <Building2 className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+                <div className="relative h-48 w-full overflow-hidden">
+                  <img src={co.image} alt={co.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute top-4 right-4">
+                    <span className="rounded-none bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm">
+                      {co.tag}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="mb-3 text-lg font-bold text-foreground">{co.name}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground font-medium">{co.description}</p>
+                <div className="p-8">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-none bg-primary/5 transition-colors group-hover:bg-primary group-hover:text-white">
+                    <Building2 className="h-6 w-6 text-primary group-hover:text-white" />
+                  </div>
+                  <h3 className="mb-3 text-lg font-extrabold text-foreground leading-snug">{co.name}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground font-medium">{co.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -140,7 +227,7 @@ const About = () => {
       </section>
 
       {/* Process */}
-      <section className="section-padding bg-background relative">
+      <section className="section-padding bg-background bg-grid-lines relative overflow-hidden">
         <div className="container-content">
           <SectionHeading
             tag="Operations"
