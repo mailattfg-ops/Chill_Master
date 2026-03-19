@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle, AirVent, Wrench, Wind, Zap, Droplets, ThermometerSnowflake, ShieldCheck, Clock, Users, Building2, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { m, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 import projectOffice from "@/assets/project-office.png";
 import projectWarehouse from "@/assets/project-warehouse.png";
@@ -15,12 +16,10 @@ import SEO from "@/components/SEO";
 import whyChooseUsImg from "@/assets/why-choose-us.png";
 
 const services = [
-  { icon: AirVent, title: "HVAC Installation & AMC", description: "Residential and commercial air conditioning solutions including full system installation and AMC contracts.", tag: "Installation" },
-  { icon: Wrench, title: "Maintenance & Repair", description: "Preventive and corrective maintenance services for all HVAC systems across the UAE.", tag: "Support" },
-  { icon: Wind, title: "Ventilation & Ducting", description: "GI duct fabrication and ventilation system installation with precise air balancing.", tag: "Engineering" },
-  { icon: Zap, title: "Electrical Works", description: "Complete MEP contracting for power distribution, lighting, and specialized MEP systems.", tag: "Infrastructure" },
-  { icon: Droplets, title: "Plumbing Works", description: "Professional plumbing solutions for water supply, drainage, and firefighting systems.", tag: "Solutions" },
-  { icon: ThermometerSnowflake, title: "Industrial HVAC", description: "Specialized industrial cooling and HVAC solutions for warehouses and factories.", tag: "Industrial" },
+  { icon: AirVent, title: "HVAC Installation & AMC", description: "Residential and commercial air conditioning solutions including full system installation and AMC contracts.", image: "/service_install.png", tag: "Installation" },
+  { icon: Wrench, title: "Maintenance & Repair", description: "Preventive and corrective maintenance services for all HVAC systems across the UAE.", image: "/service_maintenance.png", tag: "Support" },
+  { icon: Wind, title: "Ventilation & Ducting", description: "GI duct fabrication and ventilation system installation with precise air balancing.", image: "/service_ventilation.png", tag: "Engineering" },
+  { icon: ThermometerSnowflake, title: "Industrial HVAC", description: "Specialized industrial cooling and HVAC solutions for warehouses and factories.", image: "/service_industrial.png", tag: "Industrial" },
 ];
 
 const trustItems = [
@@ -44,23 +43,95 @@ const projects = [
   { image: projectVilla, title: "Residential Villa AC System", location: "Sharjah, UAE", tags: ["Split AC", "Premium VRF"], description: "Premium split and VRF air conditioning installation for luxury residential villas." },
 ];
 
+const heroBackgrounds = [
+  heroBg,
+  "/hero_bg_chillers_v3.png",
+  "/hero_bg_villa_v3.png",
+  "/hero_bg_tech_v3.png"
+];
+
 const Index = () => {
+  const [currentBg, setCurrentBg] = useState(0);
+  const { scrollY } = useScroll();
+  const yBg = useTransform(scrollY, [0, 800], [0, 250]);
+
+  const [serviceIndex, setServiceIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setServiceIndex((prev) => (prev + 1) % services.length);
+    }, 3000); // 1s to move, 2s on screen
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % heroBackgrounds.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
-      <SEO />
+      <SEO 
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Chill Master",
+          "alternateName": "Chill Master HVAC Solutions",
+          "url": "https://chillmaster.ae",
+          "logo": "https://chillmaster.ae/logo.png",
+          "image": "https://chillmaster.ae/og-image.png",
+          "description": "Premium HVAC installation, maintenance, and engineering solutions in the UAE.",
+          "telephone": "+971551029597",
+          "email": "info@chillmasteruae.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Al Qusais Industrial 2",
+            "addressLocality": "Dubai",
+            "addressRegion": "Dubai",
+            "addressCountry": "AE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "25.2632",
+            "longitude": "55.3929"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "08:00",
+              "closes": "18:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.facebook.com/chillmasteruae"
+          ],
+          "founder": {
+            "@type": "Person",
+            "name": "Jowhar A."
+          }
+        }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy">
-        <div className="absolute inset-0">
-          <img 
-            src={heroBg} 
-            alt="HVAC systems on UAE rooftop" 
-            className="h-full w-full object-cover opacity-30" 
-            loading="eager"
-            // @ts-ignore
-            fetchpriority="high"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70" />
-        </div>
+        <m.div className="absolute inset-0" style={{ y: yBg }}>
+          <AnimatePresence>
+            <m.img 
+              key={currentBg}
+              src={heroBackgrounds[currentBg]} 
+              alt="HVAC systems on UAE rooftop" 
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 0.7, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0 h-full w-full object-cover" 
+              loading="eager"
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-navy/90 via-navy/50 to-navy/10" />
+        </m.div>
 
         {/* Blueprint grid motif */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -68,48 +139,53 @@ const Index = () => {
           backgroundSize: '60px 60px'
         }} />
 
-        <div className="container-content relative z-10 py-24 md:py-32 lg:py-40">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
+        <div className="container-content relative z-10 pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40">
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="max-w-2xl"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-3xl"
           >
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-navy-foreground md:text-5xl lg:text-6xl">
-              Professional HVAC & MEP Solutions in{" "}
-              <span className="text-gradient">UAE</span>
+            <h1 className="text-[28px] md:text-6xl lg:text-7xl font-black leading-[1.2] tracking-tight text-white mb-6">
+              Engineered Climate Perfection in{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] via-primary to-[#DDB262]">UAE</span>
             </h1>
-            <p className="mt-5 text-base leading-relaxed text-navy-foreground/70 md:text-lg">
-              Installation, maintenance, ducting, ventilation, electrical and plumbing for residential, commercial, and industrial projects.
+            <p className="mt-6 text-[13px] md:text-xl leading-relaxed text-slate-200 focus-visible: max-w-2xl font-medium drop-shadow-md">
+              Installation, maintenance, ducting, and ventilation for luxury residential, commercial, and industrial projects.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-none font-heading font-semibold">
+            <div className="mt-12 flex flex-wrap gap-4 items-center">
+              <Button asChild className="h-14 md:h-[70px] px-8 md:px-10 rounded-full font-heading font-black tracking-widest uppercase text-[10px] md:text-xs shadow-2xl shadow-white/10 hover:shadow-white/20 hover:scale-105 transition-all duration-500 bg-white text-navy hover:bg-slate-50 border-0 group">
                 <Link to="/contact">
-                  Request a Quote <ArrowRight className="ml-1.5 h-4 w-4" />
+                  Begin Project <ArrowRight className="ml-3 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-2" />
                 </Link>
               </Button>
               <Button
                 asChild
-                size="lg"
                 variant="outline"
-                className="rounded-none border-navy-foreground/20 bg-transparent font-heading font-semibold text-navy-foreground hover:bg-navy-foreground/5"
+                className="h-14 md:h-[70px] px-8 md:px-10 rounded-full border-2 border-white/30 bg-white/5 backdrop-blur-2xl font-heading font-black text-white hover:bg-white/10 hover:border-white/60 hover:scale-105 transition-all duration-500 uppercase tracking-widest text-[10px] md:text-xs"
               >
-                <a href="https://wa.me/971507002525" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-1.5 h-4 w-4" /> WhatsApp Us
+                <a href="https://wa.me/971551029597" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-3 h-4 w-4 md:h-5 md:w-5" /> WhatsApp
                 </a>
               </Button>
             </div>
 
             {/* Trust bar */}
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-navy-foreground/10 pt-6">
+            <m.div 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              className="mt-20 inline-flex flex-wrap gap-x-12 gap-y-6 rounded-[32px] border border-white/10 bg-white/5 p-8 backdrop-blur-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] relative overflow-hidden group/bar"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover/bar:translate-x-[150%] transition-transform duration-1500" />
               {trustItems.map((item) => (
-                <span key={item} className="flex items-center gap-1.5 text-xs font-medium text-navy-foreground/50">
-                  <span className="h-1.5 w-1.5 rounded-none bg-cyan-glow" />
-                  {item}
-                </span>
+                <div key={item} className="flex items-center gap-3 relative z-10 group/item">
+                  <div className="h-2 w-2 rounded-full bg-gradient-to-br from-[#DDB262] to-primary shadow-[0_0_10px_#DDB262] transition-transform group-hover/item:scale-150" />
+                  <span className="text-[11px] font-black tracking-[0.2em] text-white/90 uppercase">{item}</span>
+                </div>
               ))}
-            </div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
@@ -117,15 +193,17 @@ const Index = () => {
       <section className="section-padding relative overflow-hidden">
         {/* Background with Grid and Image */}
         <div className="absolute inset-0 z-0 bg-slate-50/50">
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: `linear-gradient(to right, #3b82f6 1px, transparent 1px), 
-                              linear-gradient(to bottom, #3b82f6 1px, transparent 1px)`,
-            backgroundSize: '40px 40px'
+          <div className="absolute inset-0 opacity-40" style={{
+            backgroundImage: `radial-gradient(#cbd5e1 1px, transparent 1px)`,
+            backgroundSize: '24px 24px'
           }} />
           <img 
             src="/service_bg.jpg" 
             alt="" 
             className="h-full w-full object-cover opacity-10"
+            loading="lazy"
+            width="1920"
+            height="1080"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/80" />
         </div>
@@ -133,10 +211,38 @@ const Index = () => {
         <div className="container-content relative z-10">
           <SectionHeading
             tag="Our Services"
-            title="Engineering-Led HVAC & MEP Solutions"
-            description="Comprehensive mechanical, electrical, and plumbing services delivered with precision and compliance."
+            title="Engineering-Led HVAC Solutions"
+            description="Comprehensive HVAC services delivered with precision and compliance."
           />
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Mobile Carousel / Desktop Grid */}
+          <div className="lg:hidden relative overflow-hidden py-4 -mx-4 px-4 sm:-mx-6 sm:px-6">
+            <m.div 
+              animate={{ x: `calc(-${serviceIndex * 100}%)` }}
+              transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+              className="flex"
+            >
+              {services.map((service, i) => (
+                <div key={service.title} className="w-full shrink-0 px-2">
+                  <ServiceCard {...service} index={i} />
+                </div>
+              ))}
+            </m.div>
+            <div className="flex justify-center gap-2 mt-8">
+              {services.map((_, i) => (
+                <m.button 
+                  key={i} 
+                  onClick={() => setServiceIndex(i)}
+                  animate={{ 
+                    width: serviceIndex === i ? 24 : 6,
+                    backgroundColor: serviceIndex === i ? "#3b82f6" : "#cbd5e1" 
+                  }}
+                  className="h-1.5 rounded-full transition-all duration-300" 
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden lg:grid gap-6 lg:grid-cols-4">
             {services.map((service, i) => (
               <ServiceCard key={service.title} {...service} index={i} />
             ))}
@@ -148,12 +254,12 @@ const Index = () => {
         {/* Background Industrial Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src={industrialBg} 
-            alt="" 
-            className="h-full w-full object-cover opacity-30"
+            src="/group_industrial_bg_v2.png" 
+            alt="Group industrial presence" 
+            className="h-full w-full object-cover opacity-25"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/20" />
         </div>
         
         <div className="container-content relative z-10">
@@ -180,7 +286,7 @@ const Index = () => {
               </div>
             </div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -189,8 +295,8 @@ const Index = () => {
             >
               <div className="grid gap-6 md:grid-cols-3">
                 {[
-                  { name: "Flash Building Contracting L.L.C", sub: "General & Civil Contracting", icon: Building2 },
                   { name: "Al Baraq Steel Works L.L.C", sub: "Steel Fabrication & Structural", icon: Wrench },
+                  { name: "Flash Building Contracting L.L.C", sub: "General & Civil Contracting", icon: Building2 },
                   { name: "Al Baraq (Dufe Lub)", sub: "Industrial Lubricant Mfg.", icon: Droplets },
                 ].map((co, i) => (
                   <div key={co.name} className="flex flex-col items-center text-center p-6 sm:p-8 rounded-none border border-slate-100 bg-white/80 backdrop-blur-md shadow-lg transition-all hover:border-primary/30 hover:shadow-2xl hover:-translate-y-1">
@@ -202,7 +308,7 @@ const Index = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -224,7 +330,7 @@ const Index = () => {
         <div className="container-content relative z-10">
           <div className="grid gap-16 lg:grid-cols-2 items-center">
             {/* Left Column: Content */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -241,7 +347,7 @@ const Index = () => {
               </h2>
               
               <p className="mt-6 text-base leading-relaxed text-muted-foreground max-w-lg">
-                We deliver engineering-led mechanical, electrical, and plumbing services with a 100% commitment to precision, safety, and client satisfaction across the UAE.
+                We deliver engineering-led HVAC services with a 100% commitment to precision, safety, and client satisfaction across the UAE.
               </p>
 
               <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -260,10 +366,10 @@ const Index = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Right Column: Image */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -278,6 +384,9 @@ const Index = () => {
                   src={whyChooseUsImg} 
                   alt="Professional engineering team" 
                   className="h-full w-full object-cover aspect-video lg:aspect-[4/5]" 
+                  loading="lazy"
+                  width="800"
+                  height="1000"
                 />
               </div>
               
@@ -293,7 +402,7 @@ const Index = () => {
                   <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-0.5">Pan-UAE Service</div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>

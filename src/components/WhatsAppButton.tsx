@@ -2,7 +2,7 @@ import { MessageCircle } from "lucide-react";
 
 const WhatsAppButton = () => {
   const message = encodeURIComponent("Hi Chill Master, I need a quote for ___.");
-  const url = `https://wa.me/971507002525?text=${message}`;
+  const url = `https://wa.me/971551029597?text=${message}`;
 
   return (
     <a

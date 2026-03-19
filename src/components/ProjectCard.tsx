@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface ProjectCardProps {
   image: string;
@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ image, title, location, tags, description, index }: ProjectCardProps) => {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
@@ -38,7 +38,7 @@ const ProjectCard = ({ image, title, location, tags, description, index }: Proje
         <p className="mb-2 text-xs text-muted-foreground">{location}</p>
         <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

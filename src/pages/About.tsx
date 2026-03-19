@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { Building2, Eye, Target, ShieldCheck, ClipboardCheck, Truck, Wrench, CheckCircle2 } from "lucide-react";
+import { m } from "framer-motion";
+import { Building2, Eye, Target, ShieldCheck, ClipboardCheck, Truck, Wrench, CheckCircle2, ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import CTAStrip from "@/components/CTAStrip";
 import SEO from "@/components/SEO";
@@ -44,38 +44,40 @@ const About = () => {
   return (
     <>
       <SEO 
-        title="About Us | Chill Master HVAC & MEP Solutions"
-        description="Learn about Chill Master, a part of Jowhar A. Group, delivering engineering excellence in HVAC and MEP solutions across the UAE since 2025."
+        title="About Us | Chill Master HVAC Solutions"
+        description="Learn about Chill Master, a part of Jowhar A. Group, delivering engineering excellence in HVAC solutions across the UAE since 2025."
         canonical="https://chillmaster.ae/about"
       />
       {/* Hero */}
-      <section className="relative bg-navy section-padding overflow-hidden">
+      <section className="relative bg-navy pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={aboutHeroBg} 
+          <m.img 
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 10, ease: "linear" }}
+            src="/hero_bg_chillers_v3.png" 
             alt="Engineering background" 
-            className="h-full w-full object-cover opacity-20"
+            className="h-full w-full object-cover opacity-30"
             loading="eager"
-            // @ts-ignore
-            fetchpriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
         </div>
         <div className="container-content relative z-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className="max-w-2xl"
           >
-            <span className="mb-3 inline-block rounded-full border border-navy-foreground/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-navy-foreground/60">
-              About Chill Master
-            </span>
-            <h1 className="text-3xl font-bold tracking-tight text-navy-foreground md:text-5xl">
-              Engineering Excellence in HVAC & MEP
+            <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Corporate Heritage</span>
+            </div>
+            <h1 className="text-4xl font-black tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.1] mb-6">
+              Engineering <br /> Perfection <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">at Scale</span>
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-navy-foreground/60 md:text-lg">
-              Founded in 2025, Chill Master is part of a UAE-based industrial group led by Mr. Jowhar A., delivering reliable HVAC and MEP solutions backed by decades of Group-wide engineering excellence.
+            <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
+              Founded in 2025, Chill Master is part of a UAE-based industrial group led by Mr. Jowhar A., delivering reliable HVAC solutions backed by decades of Group-wide engineering excellence.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <a 
@@ -87,7 +89,7 @@ const About = () => {
                 Read about our industrial group on Times of Gulf
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -97,13 +99,13 @@ const About = () => {
           <SectionHeading
             tag="Strategic Direction"
             title="Our Vision & Mission"
-            description="Leading the HVAC & MEP industry through precision, reliability, and engineering excellence."
+            description="Leading the HVAC industry through precision, reliability, and engineering excellence."
           />
           
           <div className="mt-16 space-y-24 md:space-y-32">
             {/* Vision Section */}
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -114,14 +116,14 @@ const About = () => {
                 </div>
                 <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Our Vision</h3>
                 <p className="text-lg leading-relaxed text-muted-foreground font-medium">
-                  To be the most trusted HVAC & MEP partner for developers, contractors, and facility owners in the UAE — known for engineering precision and responsive execution.
+                  To be the most trusted HVAC partner for developers, contractors, and facility owners in the UAE — known for engineering precision and responsive execution.
                 </p>
                 <div className="mt-8 flex items-center gap-4 border-l-4 border-primary pl-6 py-2">
                   <span className="text-sm font-bold text-foreground/80 uppercase tracking-widest italic">Innovation • Precision • Trust</span>
                 </div>
-              </motion.div>
+              </m.div>
               
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -129,7 +131,14 @@ const About = () => {
                 className="relative"
               >
                 <div className="aspect-[16/10] overflow-hidden rounded-none shadow-2xl shadow-primary/10 border-4 sm:border-8 border-white">
-                  <img src={visionImg} alt="Vision concept" className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" loading="lazy" />
+                  <img 
+                    src={visionImg} 
+                    alt="Vision concept" 
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" 
+                    loading="lazy" 
+                    width="1200"
+                    height="750"
+                  />
                 </div>
                 <div className="absolute -bottom-6 -left-6 h-32 w-32 rounded-none bg-navy p-6 flex items-center justify-center hidden md:flex">
                   <div className="h-full w-full rounded-none border border-white/20 flex flex-col items-center justify-center">
@@ -137,12 +146,12 @@ const About = () => {
                     <span className="text-[8px] text-white/60 font-bold uppercase tracking-widest mt-1">Vision</span>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Mission Section */}
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -150,16 +159,23 @@ const About = () => {
                 className="order-2 lg:order-1 relative"
               >
                 <div className="aspect-[16/10] overflow-hidden rounded-none shadow-2xl shadow-navy/10 border-4 sm:border-8 border-white">
-                  <img src={missionImg} alt="Mission execution" className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" loading="lazy" />
+                  <img 
+                    src={missionImg} 
+                    alt="Mission execution" 
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" 
+                    loading="lazy" 
+                    width="1200"
+                    height="750"
+                  />
                 </div>
                 <div className="absolute -top-6 -right-6 h-32 w-32 rounded-none bg-primary p-6 flex items-center justify-center hidden md:flex">
                   <div className="h-full w-full rounded-none border border-white/20 flex flex-col items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -171,7 +187,7 @@ const About = () => {
                 </div>
                 <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Our Mission</h3>
                 <p className="text-lg leading-relaxed text-muted-foreground font-medium">
-                  To deliver end-to-end mechanical, electrical, and plumbing solutions with documented quality, safety compliance, and on-time project delivery.
+                  To deliver end-to-end HVAC solutions with documented quality, safety compliance, and on-time project delivery.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   {["Quality QC", "HSE Safety", "Timely Delivery"].map(tag => (
@@ -180,7 +196,7 @@ const About = () => {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </div>
@@ -195,32 +211,38 @@ const About = () => {
             <p className="text-muted-foreground">Integrated industrial support and delivery standards across contracting, steel, and manufacturing.</p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {groupCompanies.map((co, i) => (
-              <motion.div
+              <m.div
                 key={co.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group overflow-hidden rounded-none border border-white bg-white shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl"
+                className="group relative overflow-hidden bg-white rounded-3xl border border-slate-100 shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="relative h-48 w-full overflow-hidden">
-                  <img src={co.image} alt={co.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <div className="relative h-56 w-full overflow-hidden">
+                  <img 
+                    src={co.image} 
+                    alt={co.name} 
+                    className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                   <div className="absolute top-4 right-4">
-                    <span className="rounded-none bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm">
+                    <span className="rounded-full bg-white/95 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-primary shadow-xl">
                       {co.tag}
                     </span>
                   </div>
                 </div>
-                <div className="p-8">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-none bg-primary/5 transition-colors group-hover:bg-primary group-hover:text-white">
-                    <Building2 className="h-6 w-6 text-primary group-hover:text-white" />
+                <div className="p-8 relative">
+                  <h3 className="mb-4 text-xl font-black text-navy leading-tight">{co.name}</h3>
+                  <p className="text-[13px] leading-relaxed text-muted-foreground/80 font-medium line-clamp-3">{co.description}</p>
+                  
+                  <div className="mt-8 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500">
+                    Learn more <ArrowRight className="h-4 w-4" />
                   </div>
-                  <h3 className="mb-3 text-lg font-extrabold text-foreground leading-snug">{co.name}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground font-medium">{co.description}</p>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -241,7 +263,7 @@ const About = () => {
             
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5 relative z-10">
               {processSteps.map((step, i) => (
-                <motion.div
+                <m.div
                   key={step.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +281,7 @@ const About = () => {
                   </div>
                   <h4 className="mb-2 text-base font-bold text-foreground">{step.title}</h4>
                   <p className="text-xs leading-relaxed text-muted-foreground font-medium px-4">{step.description}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -284,7 +306,7 @@ const About = () => {
               "UAE Civil Defence Approved",
               "DEWA Registered Contractor",
             ].map((cert, i) => (
-              <motion.div
+              <m.div
                 key={cert}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -296,7 +318,7 @@ const About = () => {
                   <ShieldCheck className="h-6 w-6 text-primary" />
                 </div>
                 <span className="text-sm font-bold tracking-tight">{cert}</span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Phone, Mail, MapPin, Send, Facebook, Twitter, Youtube, Globe, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,47 +26,43 @@ const Contact = () => {
     <>
       <SEO 
         title="Contact Us | Request a Quote | Chill Master UAE"
-        description="Ready to discuss your HVAC or MEP project? Contact Chill Master via form, phone, or WhatsApp. We respond to all inquiries within 24–48 hours across the UAE."
+        description="Ready to discuss your HVAC project? Contact Chill Master via form, phone, or WhatsApp. We respond to all inquiries within 24–48 hours across the UAE."
         canonical="https://chillmaster.ae/contact"
       />
-         {/* Hero Section */}
-      <section className="relative bg-navy overflow-hidden">
-        {/* Decorative Grid Lines */}
-        <div className="absolute inset-0 opacity-[0.05]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '80px 80px'
-        }} />
+      {/* Hero Section */}
+      <section className="relative bg-navy pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <m.img 
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 10, ease: "linear" }}
+            src="/contact_hero_bg.png" 
+            alt="Corporate communication background" 
+            className="h-full w-full object-cover opacity-30"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
+        </div>
+
         
-        <div className="container-content relative z-10 pt-16 pb-16 lg:pt-20 lg:pb-24">
-          <div className="grid lg:grid-cols-2 gap-12 lg:items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-xl"
-            >
-              <div className="mb-4 h-1 w-12 bg-[#A8C3B8] rounded-none" />
-              <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl mb-6">
-                Contact <span className="text-[#A8C3B8]">Us</span>
-              </h1>
-              <p className="text-lg md:text-xl leading-relaxed text-white/70 font-medium">
-                Professional HVAC & MEP engineering solutions across the UAE. Our team is ready to assist with your residential, commercial, and industrial requirements.
-              </p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative order-first lg:order-last mb-8 lg:mb-0"
-            >
-              <div className="relative z-10 aspect-[16/9] lg:aspect-[3/2] overflow-hidden border-[10px] border-white shadow-2xl">
-                <img src={contactHeroImg} alt="Modern UAE Office" className="h-full w-full object-cover" />
-              </div>
-              {/* Decorative background element */}
-              <div className="absolute -bottom-4 -right-4 -left-4 top-4 border border-[#A8C3B8]/20 z-0 hidden lg:block" />
-            </motion.div>
-          </div>
+        <div className="container-content relative z-10">
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-3xl"
+          >
+            <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Corporate Inquiries</span>
+            </div>
+            <h1 className="text-4xl font-black tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.1] mb-6">
+              Connect <br /> with our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">Engineers</span>
+            </h1>
+            <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
+              Start your next major climate project with a specialized consultation. We respond to all technical inquiries across the UAE within 24–48 hours.
+            </p>
+          </m.div>
         </div>
       </section>
 
@@ -78,53 +74,46 @@ const Contact = () => {
             {/* Left Column: Form */}
             <div className="lg:col-span-7">
               {/* Contact Form Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
+              <m.div
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-navy p-6 md:p-12 shadow-2xl relative overflow-hidden"
+                transition={{ duration: 0.8 }}
+                className="bg-navy p-8 md:p-16 rounded-[40px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden ring-1 ring-white/10"
               >
-                {/* Accent Decor */}
-                <div className="absolute top-0 right-0 h-24 w-24 bg-[#A8C3B8]/10 -mr-12 -mt-12 rotate-45" />
-                
-                <div className="mb-8 relative z-10">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="h-0.5 w-6 bg-[#A8C3B8]" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A8C3B8]">Request</span>
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-2">Send A Message</h3>
-                  <p className="text-white/50 text-base">Fill out the form below and our specialists will contact you.</p>
+                <div className="mb-12 relative z-10">
+                  <h3 className="text-3xl font-black text-white mb-4 md:text-4xl leading-tight">Project Inquiry <br /><span className="text-primary tracking-widest font-bold">START NOW</span></h3>
+                  <p className="text-white/60 text-base md:text-lg max-w-md">Our engineering specialists are ready to provide technical guidance and detailed BOQs for your project.</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-[9px] font-bold text-white/40 uppercase tracking-widest ml-1">Full Name</label>
-                      <Input required className="h-12 rounded-none bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-[#A8C3B8] focus:ring-0 transition-all px-4" />
+                <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] ml-2">Authorized Full Name</label>
+                      <Input required className="h-14 rounded-full bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary focus:ring-0 transition-all px-6 text-sm" />
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-[9px] font-bold text-white/40 uppercase tracking-widest ml-1">Email Address</label>
-                      <Input required type="email" className="h-12 rounded-none bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-[#A8C3B8] focus:ring-0 transition-all px-4" />
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] ml-2">Official Email Address</label>
+                      <Input required type="email" className="h-14 rounded-full bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary focus:ring-0 transition-all px-6 text-sm" />
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-[9px] font-bold text-white/40 uppercase tracking-widest ml-1">Your Requirements</label>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] ml-2">Technical Requirements & Notes</label>
                     <Textarea 
                       required 
-                      className="min-h-[160px] rounded-none bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-[#A8C3B8] focus:ring-0 transition-all p-4 resize-none" 
+                      className="min-h-[160px] rounded-[30px] bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary focus:ring-0 transition-all p-6 resize-none text-sm" 
                     />
                   </div>
-                  <Button type="submit" disabled={loading} className="h-14 px-12 rounded-none font-bold bg-[#A8C3B8] text-navy hover:bg-white transition-all uppercase tracking-widest text-[10px] min-w-[200px]">
-                    {loading ? "Sending..." : "Submit Inquiry"}
+                  <Button type="submit" disabled={loading} className="h-16 px-12 rounded-full font-black bg-primary text-navy hover:bg-white transition-all uppercase tracking-[0.15em] text-[10px] min-w-[240px] shadow-2xl shadow-primary/20">
+                    {loading ? "Transmitting..." : "Send Technical Inquiry"}
                   </Button>
                 </form>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Right Column: Location */}
             <div className="lg:col-span-5">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -137,7 +126,9 @@ const Contact = () => {
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy/50">Presence</span>
                   </div>
                   <h2 className="text-3xl font-bold text-navy mb-3 lg:text-4xl">Our Location</h2>
-                  <p className="text-muted-foreground text-base leading-relaxed mb-6">Serving Dubai, Abu Dhabi, Sharjah, and the Northern Emirates.</p>
+                  <p className="text-muted-foreground text-base leading-relaxed mb-2">Al Fahad Building -1a, 1st floor</p>
+                  <p className="text-muted-foreground text-base leading-relaxed mb-2">Office# 116, Al Qusais Industrial 2</p>
+                  <p className="text-muted-foreground text-base leading-relaxed mb-6">Dubai, United Arab Emirates</p>
                   
                   <div className="overflow-hidden border-4 border-slate-50 shadow-2xl h-[300px] relative group">
                     <iframe
@@ -164,7 +155,7 @@ const Contact = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
           </div>
 
@@ -172,11 +163,11 @@ const Contact = () => {
           <div className="mt-12 lg:mt-20 pt-12 border-t border-slate-100">
             <div className="flex flex-col sm:flex-row sm:justify-end gap-10 lg:gap-20">
               {[
-                { icon: Phone, label: "(+971) 50 700 2525", sub: "General Inquiry", href: "tel:+971507002525" },
-                { icon: Mail, label: "info@chillmaster.ae", sub: "Project Proposals", href: "mailto:info@chillmaster.ae" },
-                { icon: MapPin, label: "Mainland UAE", sub: "Our Presence", href: null },
+                { icon: Phone, label: "(+971) 55 102 9597", sub: "General Inquiry", href: "tel:+971551029597" },
+                { icon: Mail, label: "info@chillmasteruae.com", sub: "Project Proposals", href: "mailto:info@chillmasteruae.com" },
+                { icon: MapPin, label: "Dubai", sub: "Al Qusais Ind 2", href: null },
               ].map((item, i) => (
-                <motion.div 
+                <m.div 
                   key={item.label}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -191,7 +182,7 @@ const Contact = () => {
                     <h4 className="font-bold text-navy text-sm lg:text-base leading-tight mb-0.5">{item.label}</h4>
                     <p className="text-[9px] text-muted-foreground uppercase tracking-[0.15em] font-black">{item.sub}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>

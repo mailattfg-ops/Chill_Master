@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Building2, Home, LayoutDashboard, Factory, Search, MapPin, Tag, ChevronRight } from "lucide-react";
 import projectOffice from "@/assets/project-office.png";
 import projectWarehouse from "@/assets/project-warehouse.png";
@@ -55,15 +55,7 @@ const allProjects = [
     sector: "Industrial", 
     tags: ["Process Cooling", "Hygienic"], 
     description: "Precision-engineered process cooling and ventilation systems for a large food and beverage manufacturing plant." 
-  },
-  { 
-    image: projectOffice, 
-    title: "Dubai Marina Residential Tower", 
-    location: "Dubai, UAE", 
-    sector: "Residential", 
-    tags: ["MEP", "Drainage", "Power"], 
-    description: "Integrated Mechanical, Electrical, and Plumbing package for a prestigious 20-storey residential high-rise in Dubai Marina." 
-  },
+  }
 ];
 
 const filters = [
@@ -83,47 +75,61 @@ const Projects = () => {
   return (
     <>
       <SEO 
-        title="Our Projects | HVAC & MEP Portfolio in UAE"
-        description="Explore our world-class portfolio of HVAC and MEP success stories across the UAE, from Dubai office towers to industrial plants."
+        title="Our Projects | HVAC Portfolio in UAE"
+        description="Explore our world-class portfolio of HVAC success stories across the UAE, from Dubai office towers to industrial plants."
         canonical="https://chillmaster.ae/projects"
       />
       
       {/* Hero */}
-      <section className="bg-navy section-padding">
-        <div className="container-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+      <section className="relative bg-navy pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <m.img 
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 10, ease: "linear" }}
+            src="/projects_hero_bg.png" 
+            alt="Engineering projects portfolio" 
+            className="h-full w-full object-cover opacity-30"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
+        </div>
+        <div className="container-content relative z-10">
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-3xl"
           >
-            <span className="mb-3 inline-block rounded-full border border-navy-foreground/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-navy-foreground/60">
-              Portfolio
-            </span>
-            <h1 className="text-3xl font-bold tracking-tight text-navy-foreground md:text-5xl">
-              Our Projects
+            <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Success Stories</span>
+            </div>
+            <h1 className="text-4xl font-black tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.1] mb-6">
+              Engineering <br /> Success in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">UAE</span>
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-navy-foreground/60 md:text-lg">
-              Explore our track record of successful HVAC and MEP projects across residential, commercial, and industrial sectors in the UAE.
+            <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
+              Explore our world-class portfolio of HVAC success stories across the UAE, from luxury villas and Dubai office towers to massive industrial plants.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       <section className="section-padding bg-background text-foreground bg-grid-lines relative overflow-hidden">
         <div className="container-content">
           {/* Filters */}
-          <div className="mb-10 flex flex-wrap gap-2">
+          <div className="mb-12 flex flex-wrap gap-3">
             {filters.map((f) => (
               <button
                 key={f.id}
                 onClick={() => setActiveFilter(f.id)}
-                className={`rounded-none border px-4 py-2 text-sm font-medium transition-colors ${
+                className={`flex items-center gap-3 rounded-full border-2 px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.1em] transition-all duration-300 ${
                   activeFilter === f.id
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                    ? "border-primary bg-primary text-white shadow-xl shadow-primary/20 scale-105"
+                    : "border-slate-100 bg-white text-muted-foreground hover:border-primary/20 hover:text-navy hover:shadow-lg"
                 }`}
               >
+                <f.icon className={`h-4 w-4 ${activeFilter === f.id ? "text-white" : "text-slate-400 group-hover:text-primary"}`} />
                 {f.label}
               </button>
             ))}
@@ -133,7 +139,7 @@ const Projects = () => {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {filtered.map((project, i) => (
-                <motion.div
+                <m.div
                   key={project.title + project.location}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -145,7 +151,7 @@ const Projects = () => {
                   <ProjectCard {...project} index={i} />
                   
                   {/* Subtle expansion on card could be here if needed */}
-                </motion.div>
+                </m.div>
               ))}
             </AnimatePresence>
           </div>
@@ -156,7 +162,14 @@ const Projects = () => {
               <div className="flex -space-x-3 ml-2">
                 {[avatar1, avatar2, avatar3].map((img, i) => (
                   <div key={i} className="h-11 w-11 rounded-full border-2 border-white overflow-hidden shadow-md">
-                    <img src={img} alt={`Engineer ${i + 1}`} className="h-full w-full object-cover" />
+                    <img 
+                      src={img} 
+                      alt={`Engineer ${i + 1}`} 
+                      className="h-full w-full object-cover" 
+                      loading="lazy"
+                      width="44"
+                      height="44"
+                    />
                   </div>
                 ))}
               </div>

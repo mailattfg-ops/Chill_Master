@@ -8,14 +8,9 @@ const Footer = () => {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-1.5 mb-4">
-              <div className="h-8 w-8 rounded-none bg-primary flex items-center justify-center">
-                <span className="text-sm font-bold text-primary-foreground font-heading">CM</span>
-              </div>
-              <span className="text-lg font-bold font-heading tracking-tight">Chill Master</span>
-            </div>
+            <img src="/footer_icon.png" alt="Chill Master" className="h-12 w-auto mb-4" />
             <p className="text-sm text-navy-foreground/60 leading-relaxed">
-              Professional HVAC & MEP solutions for residential, commercial, and industrial projects across the UAE.
+              Professional HVAC solutions for residential, commercial, and industrial projects across the UAE.
             </p>
             <p className="mt-3 text-xs text-navy-foreground/40 italic">
               Part of Jowhar A. Group of Companies
@@ -48,8 +43,6 @@ const Footer = () => {
                 "HVAC Installation",
                 "Maintenance & AMC",
                 "Ventilation & Ducting",
-                "Electrical Works",
-                "Plumbing Works",
                 "Industrial Cooling",
               ].map((s) => (
                 <Link key={s} to="/services" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
@@ -63,17 +56,20 @@ const Footer = () => {
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-navy-foreground/50">Contact</h4>
             <div className="flex flex-col gap-3">
-              <a href="tel:+971507002525" className="flex items-start gap-2 text-sm text-navy-foreground/60 hover:text-primary transition-colors">
+              <a href="tel:+971551029597" className="flex items-start gap-2 text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0" />
-                +971 50 700 2525
+                +971 55 102 9597
               </a>
-              <a href="mailto:info@chillmaster.ae" className="flex items-start gap-2 text-sm text-navy-foreground/60 hover:text-primary transition-colors">
+              <a href="mailto:info@chillmasteruae.com" className="flex items-start gap-2 text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0" />
-                info@chillmaster.ae
+                info@chillmasteruae.com
               </a>
               <div className="flex items-start gap-2 text-sm text-navy-foreground/60">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-                Dubai, United Arab Emirates
+                <span>
+                  Al Fahad Building -1a, Office# 116<br />
+                  Al Qusais Industrial 2, Dubai
+                </span>
               </div>
             </div>
           </div>

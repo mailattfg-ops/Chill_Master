@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface CTAStripProps {
   title?: string;
@@ -9,12 +9,12 @@ interface CTAStripProps {
 }
 
 const CTAStrip = ({
-  title = "Need HVAC or MEP Solutions?",
+  title = "Need HVAC Solutions?",
   subtitle = "Get a free consultation and quote from our engineering team."
 }: CTAStripProps) => {
   return (
     <section className="bg-primary">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -33,7 +33,7 @@ const CTAStrip = ({
             Request a Quote <ArrowRight className="ml-1.5 h-4 w-4" />
           </Link>
         </Button>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

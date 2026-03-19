@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { AirVent, Wrench, Wind, Zap, Droplets, ThermometerSnowflake, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
@@ -7,7 +7,6 @@ import CTAStrip from "@/components/CTAStrip";
 import SEO from "@/components/SEO";
 import serviceHvac from "@/assets/service-hvac.png";
 import serviceDucting from "@/assets/service-ducting.png";
-import serviceMep from "@/assets/service-mep.png";
 import serviceIndustrial from "@/assets/service-industrial.png";
 
 const services = [
@@ -27,14 +26,7 @@ const services = [
     idealFor: ["Restaurants", "Industrial Warehouses", "Basements"],
     image: serviceDucting,
   },
-  {
-    icon: Zap,
-    title: "Electrical & Plumbing Works",
-    description: "Full Mechanical, Electrical, and Plumbing (MEP) contracting including power distribution, drainage, and water supply infrastructure.",
-    includes: ["Power distribution", "Water supply systems", "Drainage infrastructure", "Lighting installations", "Firefighting piping"],
-    idealFor: ["New Projects", "Building Retrofits", "Industrial Parks"],
-    image: serviceMep,
-  },
+
   {
     icon: ThermometerSnowflake,
     title: "Industrial HVAC Systems",
@@ -49,94 +41,151 @@ const Services = () => {
   return (
     <>
       <SEO 
-        title="Our Services | HVAC Installation & MEP Solutions"
-        description="Comprehensive HVAC installation, maintenance, AMC, ventilation, ducting, electrical and plumbing services across the UAE for all building types."
+        title="Our Services | HVAC Installation & Solutions"
+        description="Comprehensive HVAC installation, maintenance, AMC, ventilation, and ducting services across the UAE for all building types."
         canonical="https://chillmaster.ae/services"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "HVAC Engineering",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Chill Master"
+          },
+          "areaServed": {
+            "@type": "State",
+            "name": "United Arab Emirates"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "HVAC Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "HVAC Installation & AMC"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Ventilation & Ducting"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Industrial HVAC Systems"
+                }
+              }
+            ]
+          }
+        }}
       />
       {/* Hero */}
-      <section className="bg-navy section-padding">
-        <div className="container-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+      <section className="relative bg-navy pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <m.img 
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 10, ease: "linear" }}
+            src="/services_hero_bg.png" 
+            alt="Engineering services background" 
+            className="h-full w-full object-cover opacity-30"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
+        </div>
+        <div className="container-content relative z-10">
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-3xl"
           >
-            <span className="mb-3 inline-block rounded-full border border-navy-foreground/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-navy-foreground/60">
-              What We Do
-            </span>
-            <h1 className="text-3xl font-bold tracking-tight text-navy-foreground md:text-5xl">
-              Comprehensive HVAC & MEP Services
+            <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Corporate Solutions</span>
+            </div>
+            <h1 className="text-4xl font-black tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.1] mb-6">
+              Precision <br /> HVAC <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">Solutions</span>
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-navy-foreground/60 md:text-lg">
-              From installation to ongoing maintenance, we deliver engineering-led solutions for every building type across the UAE.
+            <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
+              From high-precision installation to ongoing maintenance, we deliver engineering-led climate solutions for UAE's most demanding environments.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Services Detail */}
-      <section className="section-padding bg-background bg-grid-lines relative overflow-hidden">
-        <div className="container-content space-y-16">
+      <section className="section-padding bg-background relative overflow-hidden">
+        <div className="container-content space-y-24 md:space-y-40">
           {services.map((service, i) => (
-            <motion.div
+            <m.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5 }}
-              className={`grid gap-8 lg:grid-cols-2 ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className={`grid gap-12 lg:grid-cols-2 lg:items-center`}
             >
               <div className={`${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                  <service.icon className="h-6 w-6 text-primary" />
+                <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-navy text-white shadow-xl">
+                  <service.icon className="h-8 w-8" />
                 </div>
-                <h2 className="mb-3 text-2xl font-bold text-foreground">{service.title}</h2>
-                <p className="text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+                <h2 className="mb-6 text-3xl font-black text-navy leading-tight md:text-4xl">{service.title}</h2>
+                <p className="text-sm md:text-lg leading-relaxed text-muted-foreground/80 font-medium">{service.description}</p>
 
-                <div className="mt-6">
-                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">What's Included</h4>
-                  <ul className="space-y-2">
-                    {service.includes.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-sm text-foreground">
-                        <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="mt-10 grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="mb-4 text-[11px] font-black uppercase tracking-widest text-primary border-b border-primary/10 pb-2">Technical Scope</h4>
+                    <ul className="space-y-3">
+                      {service.includes.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-xs md:text-sm text-foreground font-semibold">
+                          <CheckCircle2 className="h-4 w-4 shrink-0 text-primary mt-0.5" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="p-6 rounded-3xl bg-slate-50/80 border border-slate-100 h-fit">
+                    <h4 className="mb-4 text-[11px] font-black uppercase tracking-widest text-navy border-b border-navy/5 pb-2">Ideal Building Type</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {service.idealFor.map((tag) => (
+                        <span key={tag} className="px-3 py-1.5 rounded-full bg-white text-[10px] font-black text-navy border border-slate-200 shadow-sm uppercase tracking-wider">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <Button asChild className="mt-6 rounded-lg font-heading font-semibold" size="sm">
-                  <Link to="/contact">
-                    Request a Quote <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                  </Link>
-                </Button>
+                <div className="mt-10">
+                  <Button asChild className="h-14 px-10 rounded-full font-heading font-black bg-navy text-white hover:bg-primary transition-all uppercase tracking-widest text-[10px] shadow-xl group">
+                    <Link to="/contact">
+                      Request Technical Proposal <ArrowRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                    </Link>
+                  </Button>
+                </div>
               </div>
 
-              <div className="relative group">
-                <div className="overflow-hidden rounded-2xl shadow-xl shadow-primary/5 border border-primary/10">
+              <div className={`relative group ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                <div className="relative overflow-hidden rounded-[40px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100">
                   <img 
                     src={service.image} 
                     alt={service.title} 
-                    className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    loading="lazy"
                   />
-                  
-                  {/* Floating Overlay Info */}
-                  <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end max-w-[80%]">
-                    {service.idealFor.map((tag) => (
-                      <span key={tag} className="rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold text-primary shadow-sm border border-primary/10">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
                 </div>
-                <div className="mt-4 rounded-xl border border-dashed border-primary/20 bg-primary/5 p-4">
-                  <p className="text-xs font-medium text-primary/80">
-                    <span className="font-bold">Ideal for:</span> {service.idealFor.join(", ")}
-                  </p>
-                </div>
+                {/* Decorative Element */}
+                <div className="absolute -bottom-6 -right-6 h-32 w-32 bg-primary/5 -z-10 rounded-full blur-3xl" />
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </section>
@@ -155,7 +204,7 @@ const Services = () => {
               { plan: "Standard", frequency: "Bi-monthly", features: ["6 visits/year", "All Basic features", "Refrigerant top-up", "Priority response"] },
               { plan: "Premium", frequency: "Monthly", features: ["12 visits/year", "All Standard features", "Emergency support", "Detailed analytics"] },
             ].map((pkg, i) => (
-              <motion.div
+              <m.div
                 key={pkg.plan}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -181,7 +230,7 @@ const Services = () => {
                 <Button asChild className="mt-5 w-full rounded-lg font-heading font-semibold" size="sm" variant={i === 2 ? "default" : "outline"}>
                   <Link to="/contact">Get AMC Quote</Link>
                 </Button>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
