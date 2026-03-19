@@ -121,13 +121,16 @@ const Index = () => {
             <m.img 
               key={currentBg}
               src={heroBackgrounds[currentBg]} 
-              alt="HVAC systems on UAE rooftop" 
+              alt="Professional HVAC systems on UAE rooftop" 
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 0.7, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               className="absolute inset-0 h-full w-full object-cover" 
               loading="eager"
+              // @ts-expect-error - fetchpriority is not yet in React types
+              fetchpriority="high"
+              decoding="sync"
             />
           </AnimatePresence>
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-navy/90 via-navy/50 to-navy/10" />

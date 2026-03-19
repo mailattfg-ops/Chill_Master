@@ -40,6 +40,9 @@ const Contact = () => {
             alt="Corporate communication background" 
             className="h-full w-full object-cover opacity-30"
             loading="eager"
+            // @ts-expect-error - fetchpriority is not yet in React types
+            fetchpriority="high"
+            decoding="sync"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
         </div>
