@@ -24,6 +24,9 @@ const ProjectCard = ({ image, title, location, tags, description, index }: Proje
           alt={title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
+          width="400"
+          height="300"
         />
       </div>
       <div className="p-5">

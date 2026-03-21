@@ -99,6 +99,8 @@ const Services = () => {
             // @ts-expect-error - fetchpriority is not yet in React types
             fetchpriority="high"
             decoding="sync"
+            width="1920"
+            height="1080"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
         </div>
@@ -182,6 +184,9 @@ const Services = () => {
                     alt={service.title} 
                     className="aspect-[4/3] w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="600"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
                 </div>

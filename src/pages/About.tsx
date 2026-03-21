@@ -62,6 +62,8 @@ const About = () => {
             // @ts-expect-error - fetchpriority is not yet in React types
             fetchpriority="high"
             decoding="sync"
+            width="1920"
+            height="1080"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
         </div>
@@ -139,6 +141,7 @@ const About = () => {
                     alt="Vision concept" 
                     className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" 
                     loading="lazy" 
+                    decoding="async"
                     width="1200"
                     height="750"
                   />
@@ -167,6 +170,7 @@ const About = () => {
                     alt="Mission execution" 
                     className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" 
                     loading="lazy" 
+                    decoding="async"
                     width="1200"
                     height="750"
                   />
@@ -229,6 +233,10 @@ const About = () => {
                     src={co.image} 
                     alt={co.name} 
                     className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110" 
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="400"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                   <div className="absolute top-4 right-4">

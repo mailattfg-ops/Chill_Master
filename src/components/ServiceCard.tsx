@@ -36,6 +36,10 @@ const ServiceCard = ({ icon: Icon, title, description, image, tag, index }: Serv
             src={image} 
             alt={title} 
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="400"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg">

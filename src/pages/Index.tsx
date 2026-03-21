@@ -131,6 +131,8 @@ const Index = () => {
               // @ts-expect-error - fetchpriority is not yet in React types
               fetchpriority="high"
               decoding="sync"
+              width="1920"
+              height="1080"
             />
           </AnimatePresence>
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-navy/90 via-navy/50 to-navy/10" />
@@ -261,6 +263,9 @@ const Index = () => {
             alt="Group industrial presence" 
             className="h-full w-full object-cover opacity-25"
             loading="lazy"
+            decoding="async"
+            width="1920"
+            height="1080"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/20" />
         </div>
