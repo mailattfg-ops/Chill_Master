@@ -113,12 +113,7 @@
     @apply mx-auto w-full max-w-7xl px-4 md:px-8; /* 16px padding for 320px small mobile */
   }
 
-  .bg-grid-lines {
-    background-image: 
-      linear-gradient(to right, theme('colors.slate.200') 1px, transparent 1px),
-      linear-gradient(to bottom, theme('colors.slate.200') 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
+
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;

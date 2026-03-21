@@ -199,7 +199,7 @@ const Services = () => {
       </section>
 
       {/* AMC Section */}
-      <section className="section-padding bg-steel bg-grid-lines relative overflow-hidden">
+      <section className="section-padding bg-steel relative overflow-hidden">
         <div className="container-content">
           <SectionHeading
             tag="AMC Plans"

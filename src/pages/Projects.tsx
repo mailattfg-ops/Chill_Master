@@ -118,7 +118,7 @@ const Projects = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-background text-foreground bg-grid-lines relative overflow-hidden">
+      <section className="section-padding bg-background text-foreground relative overflow-hidden">
         <div className="container-content">
           {/* Filters */}
           <div className="mb-12 flex flex-wrap gap-3">

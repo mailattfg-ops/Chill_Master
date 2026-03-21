@@ -99,7 +99,7 @@ const About = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="section-padding bg-background bg-grid-lines relative overflow-hidden">
+      <section className="section-padding bg-background relative overflow-hidden">
         <div className="container-content">
           <SectionHeading
             tag="Strategic Direction"
@@ -210,7 +210,7 @@ const About = () => {
       </section>
 
       {/* Group Ecosystem */}
-      <section className="section-padding bg-slate-50 relative overflow-hidden bg-grid-lines">
+      <section className="section-padding bg-slate-50 relative overflow-hidden">
         <div className="container-content">
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">Group Ecosystem</span>
@@ -260,7 +260,7 @@ const About = () => {
       </section>
 
       {/* Process */}
-      <section className="section-padding bg-background bg-grid-lines relative overflow-hidden">
+      <section className="section-padding bg-background relative overflow-hidden">
         <div className="container-content">
           <SectionHeading
             tag="Operations"
