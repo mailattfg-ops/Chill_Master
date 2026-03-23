@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,42 +16,44 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = useCallback(() => setIsOpen((prev) => !prev), []);
-  const closeMenu = useCallback(() => setIsOpen(false), []);
+  // Function to explicitly close the menu
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
-  // Sync state with route changes to ensure menu always closes
+  const toggleMenu = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setIsOpen((prev) => !prev);
+  }, []);
+
+  // Sync state with location change (belt and suspenders)
+  // Watching location.key covers any navigation within the app
   useEffect(() => {
     closeMenu();
-  }, [location.pathname, closeMenu]);
+  }, [location.key, closeMenu]);
 
-  // Handle body scroll locking
+  // Handle body scroll locking and touch behavior
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.body.style.setProperty("touch-action", "none");
     } else {
       document.body.style.overflow = "unset";
+      document.body.style.removeProperty("touch-action");
     }
     return () => {
       document.body.style.overflow = "unset";
+      document.body.style.removeProperty("touch-action");
     };
   }, [isOpen]);
 
-  // Handle escape key
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeMenu();
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [closeMenu]);
-
   return (
-    <header className="fixed top-4 left-0 right-0 z-[100] flex justify-center w-full px-4">
+    <header className="fixed top-4 left-0 right-0 z-[1000] flex justify-center w-full px-4">
       {/* Main Navbar Pill */}
-      <nav className="mx-auto max-w-[1200px] w-full bg-white/90 backdrop-blur-md transition-all duration-300 rounded-full border border-slate-200/80 shadow-lg py-2 px-4 lg:px-8 flex items-center justify-between">
+      <nav className="mx-auto max-w-[1200px] w-full bg-white/95 backdrop-blur-md transition-all duration-300 rounded-full border border-slate-200/80 shadow-[0_8px_32px_-4px_rgba(0,0,0,0.1)] py-2 px-4 lg:px-8 flex items-center justify-between">
         <Link 
           to="/" 
-          className="relative z-[110] shrink-0 outline-none"
+          className="relative z-[1101] shrink-0 outline-none"
           onClick={closeMenu}
         >
           <img 
@@ -100,7 +102,7 @@ const Header = () => {
           {/* Mobile toggle */}
           <button
             onClick={toggleMenu}
-            className={`p-2.5 -mr-1 transition-all duration-300 lg:hidden relative z-[110] rounded-full ${
+            className={`p-2.5 -mr-1 transition-all duration-300 lg:hidden relative z-[1101] rounded-full ${
               isOpen ? "bg-slate-100 text-navy" : "text-navy hover:bg-slate-50"
             }`}
             aria-label={isOpen ? "Close Menu" : "Open Menu"}
@@ -118,23 +120,23 @@ const Header = () => {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[90] lg:hidden">
-            {/* Backdrop */}
+          <div className="fixed inset-0 z-[1050] lg:hidden overflow-hidden translate-z-0">
+            {/* Backdrop Layer */}
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMenu}
-              className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm pointer-events-auto"
             />
             
-            {/* Menu Content */}
+            {/* Menu Content Layer */}
             <m.div
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute top-20 left-4 right-4 bg-white rounded-[32px] border border-slate-200 shadow-2xl p-6 max-h-[calc(100vh-120px)] overflow-y-auto"
+              className="absolute top-20 left-4 right-4 bg-white rounded-[32px] border border-slate-200 shadow-2xl p-6 max-h-[calc(100vh-120px)] overflow-y-auto pointer-events-auto"
             >
               <div className="flex flex-col gap-2">
                 {navItems.map((item, idx) => (
@@ -144,14 +146,19 @@ const Header = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.05 }}
                     onClick={closeMenu}
+                    className="cursor-pointer"
                   >
                     <NavLink
                       to={item.path}
                       end={item.end}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        closeMenu();
+                      }}
                       className={({ isActive }) =>
                         `flex items-center justify-between px-6 py-4 text-[12px] font-black tracking-widest uppercase rounded-2xl transition-all ${
                           isActive 
-                            ? "bg-primary/10 text-primary" 
+                            ? "bg-primary/10 text-primary pointer-events-none" 
                             : "text-navy hover:bg-slate-50 active:bg-slate-100"
                         }`
                       }
@@ -166,8 +173,14 @@ const Header = () => {
                   </m.div>
                 ))}
                 
-                <div className="mt-4 pt-4 border-t border-slate-100" onClick={closeMenu}>
-                  <Button asChild className="w-full h-14 rounded-2xl bg-navy text-white hover:bg-primary active:scale-[0.98] transition-all font-black uppercase tracking-widest text-[11px] shadow-lg shadow-navy/10">
+                <div className="mt-4 pt-4 border-t border-slate-100">
+                  <Button 
+                    asChild 
+                    className="w-full h-14 rounded-2xl bg-navy text-white hover:bg-primary active:scale-[0.98] transition-all font-black uppercase tracking-widest text-[11px] shadow-lg shadow-navy/10"
+                    onClick={() => {
+                      closeMenu();
+                    }}
+                  >
                     <Link to="/contact">Free Quote</Link>
                   </Button>
                 </div>
@@ -180,4 +193,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
