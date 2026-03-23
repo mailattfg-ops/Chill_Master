@@ -23,14 +23,23 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const requirements = formData.get("requirements") as string;
+
+    const message = `*New Technical Inquiry*\n\n*Name:* ${name}\n*Email:* ${email}\n*Requirements:* ${requirements}`;
+    const whatsappUrl = `https://wa.me/971551029597?text=${encodeURIComponent(message)}`;
+
     setTimeout(() => {
       setLoading(false);
+      window.open(whatsappUrl, "_blank");
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you within 24–48 hours.",
+        title: "Redirecting to WhatsApp...",
+        description: "Your inquiry details have been prepared.",
       });
       (e.target as HTMLFormElement).reset();
-    }, 1000);
+    }, 800);
   };
 
   const socialLinks = [
@@ -155,6 +164,7 @@ const Contact = () => {
                       </label>
                       <Input
                         required
+                        name="name"
                         placeholder="Enter your full name"
                         className="h-12 rounded-2xl border-white/10 bg-white/5 px-4 text-sm text-white placeholder:text-white/25 focus:border-primary sm:h-14 sm:px-5"
                       />
@@ -166,6 +176,7 @@ const Contact = () => {
                       </label>
                       <Input
                         required
+                        name="email"
                         type="email"
                         placeholder="Enter your work email"
                         className="h-12 rounded-2xl border-white/10 bg-white/5 px-4 text-sm text-white placeholder:text-white/25 focus:border-primary sm:h-14 sm:px-5"
@@ -179,6 +190,7 @@ const Contact = () => {
                     </label>
                     <Textarea
                       required
+                      name="requirements"
                       placeholder="Tell us about your project, building type, service requirement, cooling scope, maintenance needs, or support request..."
                       className="min-h-[150px] rounded-[24px] border-white/10 bg-white/5 p-4 text-sm text-white placeholder:text-white/25 focus:border-primary resize-none sm:min-h-[180px] sm:p-5"
                     />
@@ -229,7 +241,7 @@ const Contact = () => {
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.3011806427!2d54.89784181953125!3d25.076280448180955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
                       title="Chill Master UAE Location"
-                      className="h-[240px] w-full border-0 grayscale transition-all duration-500 hover:grayscale-0 sm:h-[280px]"
+                      className="h-[240px] w-full border-0 transition-all duration-500 sm:h-[280px]"
                       loading="lazy"
                       allowFullScreen
                     />
