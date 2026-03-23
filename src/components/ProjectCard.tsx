@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { m } from "framer-motion";
 import { MapPin, Building2, ArrowUpRight } from "lucide-react";
 
@@ -11,6 +12,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ image, title, location, description, index }: ProjectCardProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <m.div
       initial={{ opacity: 0, y: 30 }}
@@ -20,12 +23,20 @@ const ProjectCard = ({ image, title, location, description, index }: ProjectCard
       className="relative overflow-hidden bg-navy rounded-[32px] border border-white/5 h-full flex flex-col shadow-none"
     >
       {/* Image Container */}
-      <div className="relative aspect-[16/11] overflow-hidden m-2 rounded-[28px]">
-        <img
+      <div className="relative aspect-[16/11] overflow-hidden m-2 rounded-[28px] bg-white/5">
+        {!isLoaded && (
+          <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-white/5 to-white/10" />
+        )}
+        <m.img
           src={image}
           alt={title}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoaded ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+          onLoad={() => setIsLoaded(true)}
           className="h-full w-full object-cover"
           loading="lazy"
+          decoding="async"
         />
       </div>
 

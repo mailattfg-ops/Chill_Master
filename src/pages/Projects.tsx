@@ -134,6 +134,7 @@ const allProjects = [
 
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [heroLoaded, setHeroLoaded] = useState(false);
   const projectsPerPage = 6;
   
   const totalPages = Math.ceil(allProjects.length / projectsPerPage);
@@ -152,18 +153,27 @@ const Projects = () => {
         title="Our Projects | HVAC Portfolio in UAE"
         description="Explore our world-class portfolio of HVAC success stories across the UAE, from Dubai office towers to industrial plants."
         canonical="https://chillmaster.ae/projects"
-      />
+      >
+        <link rel="preload" href="/projects_hero_bg.png" as="image" fetchPriority="high" />
+      </SEO>
       
       {/* Hero */}
       <section className="relative bg-navy pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-navy">
           <m.img 
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 10, ease: "linear" }}
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ 
+              scale: heroLoaded ? 1 : 1.1,
+              opacity: heroLoaded ? 0.3 : 0 
+            }}
+            transition={{ 
+              scale: { duration: 10, ease: "linear" },
+              opacity: { duration: 1, ease: "easeOut" }
+            }}
+            onLoad={() => setHeroLoaded(true)}
             src="/projects_hero_bg.png" 
             alt="Engineering projects portfolio" 
-            className="h-full w-full object-cover opacity-30"
+            className="h-full w-full object-cover"
             loading="eager"
             fetchPriority="high"
             decoding="sync"
@@ -262,12 +272,13 @@ const Projects = () => {
             <Link to="/contact" className="inline-flex items-center gap-4 p-2.5 bg-white rounded-full border border-slate-200 shadow-xl hover:shadow-2xl hover:border-primary/20 transition-all group">
               <div className="flex -space-x-3 ml-2">
                 {[avatar1, avatar2, avatar3].map((img, i) => (
-                  <div key={i} className="h-11 w-11 rounded-full border-2 border-white overflow-hidden shadow-md">
+                  <div key={i} className="h-11 w-11 rounded-full border-2 border-white overflow-hidden shadow-md bg-slate-100">
                     <img 
                       src={img} 
                       alt={`Engineer ${i + 1}`} 
                       className="h-full w-full object-cover" 
                       loading="lazy"
+                      decoding="async"
                       width="44"
                       height="44"
                     />
