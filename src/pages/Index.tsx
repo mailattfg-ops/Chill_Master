@@ -74,6 +74,8 @@ const Index = () => {
   return (
     <>
       <SEO 
+        title="Chill Master UAE | Engineering-Led HVAC Solutions"
+        description="Premium HVAC installation, maintenance, and AMC solutions in Dubai and across the UAE. Backed by an industrial group with engineering-led execution."
         schema={{
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
@@ -113,11 +115,13 @@ const Index = () => {
             "name": "Jowhar A."
           }
         }}
-      />
+      >
+        <link rel="preload" as="image" href={heroBg} fetchPriority="high" />
+      </SEO>
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy">
         <m.div className="absolute inset-0" style={{ y: yBg }}>
-          <AnimatePresence>
+          <AnimatePresence initial={false}>
             <m.img 
               key={currentBg}
               src={heroBackgrounds[currentBg]} 
@@ -128,8 +132,7 @@ const Index = () => {
               transition={{ duration: 1.2, ease: "easeInOut" }}
               className="absolute inset-0 h-full w-full object-cover" 
               loading="eager"
-              // @ts-expect-error - fetchpriority is not yet in React types
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="sync"
               width="1920"
               height="1080"

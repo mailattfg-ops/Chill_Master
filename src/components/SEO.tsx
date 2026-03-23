@@ -9,6 +9,7 @@ interface SEOProps {
   ogType?: string;
   twitterHandle?: string;
   schema?: object;
+  children?: React.ReactNode;
 }
 
 const SEO = ({
@@ -20,6 +21,7 @@ const SEO = ({
   ogType = "website",
   twitterHandle = "@chillmaster_ae",
   schema,
+  children,
 }: SEOProps) => {
   const siteTitle = title.includes("Chill Master") ? title : `${title} | Chill Master`;
 
@@ -61,6 +63,7 @@ const SEO = ({
           {JSON.stringify(schema)}
         </script>
       )}
+      {children}
     </Helmet>
   );
 };

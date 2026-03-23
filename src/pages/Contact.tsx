@@ -80,8 +80,7 @@ const Contact = () => {
             alt="Corporate communication background"
             className="h-full w-full object-cover opacity-25"
             loading="eager"
-            // @ts-expect-error
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="sync"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy/95 to-navy/75" />

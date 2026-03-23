@@ -59,8 +59,7 @@ const About = () => {
             alt="Engineering background" 
             className="h-full w-full object-cover opacity-30"
             loading="eager"
-            // @ts-expect-error - fetchpriority is not yet in React types
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="sync"
             width="1920"
             height="1080"
