@@ -24,19 +24,22 @@ const groupCompanies = [
     name: "Flash Building Contracting L.L.C", 
     description: "General and civil contracting company with offices in Ajman, Sharjah, and Umm Al Quwain.",
     image: flashThumb,
-    tag: "Contracting"
+    tag: "Contracting",
+    href: "https://flashbc.com/"
   },
   { 
     name: "Al Baraq Steel Works L.L.C", 
     description: "Ajman-based steel fabrication and structural works with operations across Dubai, Ajman, UAQ, and RAK.",
     image: steelThumb,
-    tag: "Steel Industry"
+    tag: "Steel Industry",
+    href: "https://baraqsteel.com/"
   },
   { 
     name: "Al Baraq Lubricant (Dufe Lub)", 
     description: "Umm Al Quwain-based manufacturer of ECAS-certified industrial and automotive lubricants.",
     image: lubThumb,
-    tag: "Manufacturing"
+    tag: "Manufacturing",
+    href: "https://dufelub.com/"
   },
 ];
 
@@ -219,13 +222,16 @@ const About = () => {
 
           <div className="grid gap-6 md:grid-cols-3">
             {groupCompanies.map((co, i) => (
-              <m.div
+              <m.a
                 key={co.name}
+                href={co.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative overflow-hidden bg-white rounded-3xl border border-slate-100 shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className="group relative block overflow-hidden bg-white rounded-3xl border border-slate-100 shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
                 <div className="relative h-56 w-full overflow-hidden">
                   <img 
@@ -245,14 +251,14 @@ const About = () => {
                   </div>
                 </div>
                 <div className="p-8 relative">
-                  <h3 className="mb-4 text-xl font-black text-navy leading-tight">{co.name}</h3>
+                  <h3 className="mb-4 text-xl font-black text-navy leading-tight group-hover:text-primary transition-colors duration-300">{co.name}</h3>
                   <p className="text-[13px] leading-relaxed text-muted-foreground/80 font-medium line-clamp-3">{co.description}</p>
                   
                   <div className="mt-8 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500">
                     Learn more <ArrowRight className="h-4 w-4" />
                   </div>
                 </div>
-              </m.div>
+              </m.a>
             ))}
           </div>
         </div>

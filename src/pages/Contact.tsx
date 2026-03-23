@@ -4,10 +4,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Facebook,
-  Twitter,
-  Youtube,
-  Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,12 +47,6 @@ const Contact = () => {
     }, 800);
   };
 
-  const socialLinks = [
-    { icon: Facebook, href: "#" },
-    { icon: Twitter, href: "#" },
-    { icon: Youtube, href: "#" },
-    { icon: Globe, href: "#" },
-  ];
 
   const contactItems = [
     {
@@ -275,73 +265,47 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Social Card */}
-                <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5 sm:p-6 md:p-7">
-                  <h4 className="text-xs font-black uppercase tracking-[0.18em] text-navy">
-                    Connect With Us
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Follow our updates, technical insights, and service news.
-                  </p>
+                {/* Contact Info Cards */}
+                <div className="space-y-4">
+                  {contactItems.map((item, i) => {
+                    const Icon = item.icon;
+                    const content = (
+                      <m.div
+                        key={item.label}
+                        initial={{ opacity: 0, y: 18 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.45, delay: i * 0.08 }}
+                        className="group flex h-full items-start gap-4 rounded-[24px] border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-navy text-white transition-transform group-hover:scale-105">
+                          <Icon className="h-5 w-5" />
+                        </div>
 
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {socialLinks.map((item, i) => {
-                      const Icon = item.icon;
-                      return (
-                        <a
-                          key={i}
-                          href={item.href}
-                          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-navy transition-all hover:-translate-y-0.5 hover:bg-navy hover:text-white"
-                        >
-                          <Icon className="h-4 w-4" />
-                        </a>
-                      );
-                    })}
-                  </div>
+                        <div className="min-w-0">
+                          <h4 className="break-words text-sm font-bold leading-6 text-navy sm:text-base">
+                            {item.label}
+                          </h4>
+                          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-muted-foreground">
+                            {item.sub}
+                          </p>
+                        </div>
+                      </m.div>
+                    );
+
+                    return item.href ? (
+                      <a key={item.label} href={item.href} className="block">
+                        {content}
+                      </a>
+                    ) : (
+                      <div key={item.label}>{content}</div>
+                    );
+                  })}
                 </div>
               </m.div>
             </div>
           </div>
 
-          {/* Contact Info Cards */}
-          <div className="mt-10 border-t border-slate-100 pt-10 sm:mt-12 sm:pt-12 lg:mt-16">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-              {contactItems.map((item, i) => {
-                const Icon = item.icon;
-                const content = (
-                  <m.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: i * 0.08 }}
-                    className="group flex h-full items-start gap-4 rounded-[24px] border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-navy text-white transition-transform group-hover:scale-105">
-                      <Icon className="h-5 w-5" />
-                    </div>
-
-                    <div className="min-w-0">
-                      <h4 className="break-words text-sm font-bold leading-6 text-navy sm:text-base">
-                        {item.label}
-                      </h4>
-                      <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-muted-foreground">
-                        {item.sub}
-                      </p>
-                    </div>
-                  </m.div>
-                );
-
-                return item.href ? (
-                  <a key={item.label} href={item.href} className="block">
-                    {content}
-                  </a>
-                ) : (
-                  <div key={item.label}>{content}</div>
-                );
-              })}
-            </div>
-          </div>
         </div>
       </section>
 

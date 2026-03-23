@@ -1,76 +1,150 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
-import { Building2, Home, LayoutDashboard, Factory, Search, MapPin, Tag, ChevronRight } from "lucide-react";
-import projectOffice from "@/assets/project-office.png";
-import projectWarehouse from "@/assets/project-warehouse.png";
-import projectVilla from "@/assets/project-villa.png";
-import projectMall from "@/assets/project-mall.png";
-import projectFood from "@/assets/project-food.png";
+
 import avatar1 from "@/assets/avatar1.png";
 import avatar2 from "@/assets/avatar2.png";
 import avatar3 from "@/assets/avatar3.png";
 import ProjectCard from "@/components/ProjectCard";
 import CTAStrip from "@/components/CTAStrip";
 import SEO from "@/components/SEO";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const allProjects = [
-  { 
-    image: projectOffice, 
-    title: "Commercial Office Tower HVAC", 
-    location: "Dubai, UAE", 
-    sector: "Commercial", 
-    tags: ["VRF", "Ducting", "Automation"], 
-    description: "Complete VRF system and smart ductwork installation for a 12-storey premium commercial tower with 100+ high-tech offices." 
+  {
+    image: "/projects/safarigroupofcompanies.png",
+    title: "Safari Mall",
+    location: "UAE",
+    sector: "Commercial",
+    tags: ["Mall", "HVAC"],
+    description: "CLIENT: SAFARI GROUP OF COMPANIES | CONSULTANT: M/S CAPITAL ENGINEERING CONSULTANCY LLC"
   },
-  { 
-    image: projectWarehouse, 
-    title: "Logistics Hub Industrial Cooling", 
-    location: "Abu Dhabi, UAE", 
-    sector: "Industrial", 
-    tags: ["High-Scale", "Ventilation"], 
-    description: "Specialized industrial ventilation and evaporative cooling infrastructure for a massive 15,000 sqm logistics warehouse." 
+  {
+    image: "/projects/mrjowharaakkapparambil_villa1.png",
+    title: "Proposed (G+1+Roof) Villa",
+    location: "UAE",
+    sector: "Residential",
+    tags: ["Villa", "Residential"],
+    description: "CLIENT: MR. JOWHAR AAKKAPPARAMBIL | CONSULTANT: M/S PROARC ARCHITECTS & ENGINEERING CONSULTANTS LLC"
   },
-  { 
-    image: projectVilla, 
-    title: "Luxury Residential Villa Community", 
-    location: "Sharjah, UAE", 
-    sector: "Residential", 
-    tags: ["Split AC", "Premium VRF"], 
-    description: "Premium split and VRF air conditioning network for a luxury gated residential community, optimized for noise reduction." 
+  {
+    image: "/projects/hotpackllc_1.png",
+    title: "Proposed Building (G+M+2), Warehouse (G+0), Showroom",
+    location: "UAE",
+    sector: "Commercial",
+    tags: ["Warehouse", "Showroom"],
+    description: "CLIENT: HOTPACK LLC | CONSULTANT: M/S UNITED CONSULTANCY OFFICE LLC"
   },
-  { 
-    image: projectMall, 
-    title: "Shopping Mall HVAC Retrofit", 
-    location: "Ajman, UAE", 
-    sector: "Commercial", 
-    tags: ["Chiller", "Energy Ops"], 
-    description: "Full-scale HVAC system retrofit and energy optimization for a major shopping mall, reducing operational costs by 25%." 
+  {
+    image: "/projects/attaullahsafullahwaatqullahasmatullah.png",
+    title: "G+M+2 Building & Shed",
+    location: "UAE",
+    sector: "Industrial",
+    tags: ["Building", "Shed"],
+    description: "CLIENT: ATTAULLAH SAFULLAH WA ATQULLAH ASMATULLAH | CONSULTANT: M/S DELTA ENGINEERING CONSULTANTS LLC"
   },
-  { 
-    image: projectFood, 
-    title: "Food Processing Plant Cooling", 
-    location: "RAK, UAE", 
-    sector: "Industrial", 
-    tags: ["Process Cooling", "Hygienic"], 
-    description: "Precision-engineered process cooling and ventilation systems for a large food and beverage manufacturing plant." 
+  {
+    image: "/projects/hotpackllc_2.png",
+    title: "Proposed Warehouse",
+    location: "UAE",
+    sector: "Industrial",
+    tags: ["Warehouse", "Industrial"],
+    description: "CLIENT: HOTPACK LLC | CONSULTANT: M/S UNITED CONSULTANCY OFFICE LLC"
+  },
+  {
+    image: "/projects/mrjowharaakkapparambil_villa2.png",
+    title: "Proposed G+1+Villa+ Car Parking and CW",
+    location: "UAE",
+    sector: "Residential",
+    tags: ["Villa", "Residential"],
+    description: "CLIENT: MR. JOWHAR AAKKAPPARAMBIL | CONSULTANT: M/S TRUE ENGINEERING CONSULTANTS LLC"
+  },
+  {
+    image: "/projects/mranwarkhamissaedalhakkamalali.png",
+    title: "G Showroom + G Sheds",
+    location: "UAE",
+    sector: "Commercial",
+    tags: ["Showroom", "Shed"],
+    description: "CLIENT: MR. ANWAR KHAMIS SAEED AL-HAKKAM AL-ALI | CONSULTANT: M/S INTERNATIONAL CONSULTANTS LLC"
+  },
+  {
+    image: "/projects/mrassadismailkayyali.png",
+    title: "G+1 Labour Accommodation 2 Nos",
+    location: "Al Jazeera, Rakia Freezone",
+    sector: "Residential",
+    tags: ["Accommodation", "Residential"],
+    description: "CLIENT: MR. ASSAD ISMAIL KAYYALI | CONSULTANT: AL SAHEL ENGINEERING | VALUE: 6,000,000 AED"
+  },
+  {
+    image: "/projects/bmiindustriesfzllc.png",
+    title: "Proposed Warehouse",
+    location: "Al Hamra Freezone Rakia",
+    sector: "Industrial",
+    tags: ["Warehouse", "Industrial"],
+    description: "CLIENT: BMI INDUSTRIES FZ LLC | CONSULTANT: AL MANZIL ENGINEERING | PLOT: A96, A107 & 119 | VALUE: 13,000,000 AED"
+  },
+  {
+    image: "/projects/rakitaliano.png",
+    title: "Marble Factory, Labour Camp & Musjid",
+    location: "Al Ghail Freezone",
+    sector: "Industrial",
+    tags: ["Factory", "Labour Camp"],
+    description: "CLIENT: RAK ITALIANO | CONSULTANT: MIDDLE EAST ENGG CONSULTANT | PLOT: 140-143 | VALUE: 2,200,000 AED"
+  },
+  {
+    image: "/projects/tobaccoproductsinternationalrak.png",
+    title: "Tobacco Factory (G+4), Ser Block (G+12) Nos",
+    location: "Al Hamra Free Zone Rakia",
+    sector: "Industrial",
+    tags: ["Factory", "Industrial"],
+    description: "CLIENT: TOBACCO PRODUCTS INTERNATIONAL RAK | CONSULTANT: AL MANZIL ENGG CONT | PLOT: A 101+102+103+115+116+117+126+127+128 | VALUE: 15,000,000 AED"
+  },
+  {
+    image: "/projects/bmiindustries.png",
+    title: "Factory (G+M) Office & Service Block",
+    location: "Al Jazeera, Rakia Freezone",
+    sector: "Industrial",
+    tags: ["Factory", "Industrial"],
+    description: "CLIENT: BMI INDUSTRIES | CONSULTANT: AL MANZIL ENGG CONT, RAK FZE | PLOT: C58, 59, 67 & 68 | VALUE: 25,000,000 AED"
+  },
+  {
+    image: "/projects/idealismindustriesrak.png",
+    title: "Factory (G+M) Office & G+1 Accommodation",
+    location: "Al Jazeera, Alhamra, RAK",
+    sector: "Industrial",
+    tags: ["Factory", "Accommodation"],
+    description: "CLIENT: IDEALISM INDUSTRIES, RAK | CONSULTANT: MIDDLE EAST ENGG CONSULTANT | PLOT: E-99+110+122 | VALUE: 9,000,000 AED"
+  },
+  {
+    image: "/projects/alsaadfze.png",
+    title: "Plastic Treatment Plant",
+    location: "Kalghail, RAK",
+    sector: "Industrial",
+    tags: ["Plant", "Industrial"],
+    description: "CLIENT: AL SAAD FZE | CONSULTANT: AL MANZIL ENGG CONSULTANT | PLOT: K-114 & K-115"
+  },
+  {
+    image: "/projects/alseebinternational.png",
+    title: "Sheds - 12 Nos",
+    location: "Umm Al Thoob",
+    sector: "Industrial",
+    tags: ["Shed", "Industrial"],
+    description: "CLIENT: AL SEEB INTERNATIONAL | CONSULTANT: ENAZ ENGINEERING CONSULTANT | PLOT: J/1, BLOCK-7 | VALUE: 72,000,000 AED"
   }
 ];
 
-const filters = [
-  { id: "All", label: "All Sectors", icon: LayoutDashboard },
-  { id: "Residential", label: "Residential", icon: Home },
-  { id: "Commercial", label: "Commercial", icon: Building2 },
-  { id: "Industrial", label: "Industrial", icon: Factory },
-];
-
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 6;
+  
+  const totalPages = Math.ceil(allProjects.length / projectsPerPage);
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = allProjects.slice(indexOfFirstProject, indexOfLastProject);
 
-  const filtered = activeFilter === "All"
-    ? allProjects
-    : allProjects.filter((p) => p.sector === activeFilter);
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 400, behavior: 'smooth' });
+  };
 
   return (
     <>
@@ -111,7 +185,7 @@ const Projects = () => {
               Engineering <br /> Success in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">UAE</span>
             </h1>
             <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
-              Explore our world-class portfolio of HVAC success stories across the UAE, from luxury villas and Dubai office towers to massive industrial plants.
+              Explore our world-class portfolio of HVAC success stories across the UAE, showcasing landmark projects executed under our parent companies: <span className="text-white font-bold">Al Baraq Steel Works L.L.C</span>, <span className="text-white font-bold">Flash Building Contracting L.L.C</span>, and <span className="text-white font-bold">Al Baraq (Dufe Lub)</span>.
             </p>
           </m.div>
         </div>
@@ -119,44 +193,69 @@ const Projects = () => {
 
       <section className="section-padding bg-background text-foreground relative overflow-hidden">
         <div className="container-content">
-          {/* Filters */}
-          <div className="mb-12 flex flex-wrap gap-3">
-            {filters.map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setActiveFilter(f.id)}
-                className={`flex items-center gap-3 rounded-full border-2 px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.1em] transition-all duration-300 ${
-                  activeFilter === f.id
-                    ? "border-primary bg-primary text-white shadow-xl shadow-primary/20 scale-105"
-                    : "border-slate-100 bg-white text-muted-foreground hover:border-primary/20 hover:text-navy hover:shadow-lg"
-                }`}
-              >
-                <f.icon className={`h-4 w-4 ${activeFilter === f.id ? "text-white" : "text-slate-400 group-hover:text-primary"}`} />
-                {f.label}
-              </button>
-            ))}
-          </div>
-
           {/* Project Grid */}
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout">
-              {filtered.map((project, i) => (
+            <AnimatePresence mode="popLayout" initial={false}>
+              {currentProjects.map((project, i) => (
                 <m.div
                   key={project.title + project.location}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  transition={{ duration: 0.4 }}
                   className="group relative h-full flex flex-col"
                 >
                   <ProjectCard {...project} index={i} />
-                  
-                  {/* Subtle expansion on card could be here if needed */}
                 </m.div>
               ))}
             </AnimatePresence>
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-16 flex justify-center items-center gap-3">
+              <button
+                onClick={() => paginate(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="p-3 rounded-xl border border-slate-200 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors"
+                aria-label="Previous page"
+              >
+                <span className="sr-only">Previous</span>
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <div className="flex gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
+                  <button
+                    key={number}
+                    onClick={() => paginate(number)}
+                    className={`h-12 w-12 rounded-xl border font-black text-sm transition-all duration-300 ${
+                      currentPage === number
+                        ? "bg-primary border-primary text-white shadow-lg shadow-primary/30"
+                        : "bg-white border-slate-200 text-slate-400 hover:border-primary/30 hover:text-primary"
+                    }`}
+                  >
+                    {number}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="p-3 rounded-xl border border-slate-200 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors"
+                aria-label="Next page"
+              >
+                <span className="sr-only">Next</span>
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          )}
           
           {/* Load More/CTA */}
           <div className="mt-20 text-center">

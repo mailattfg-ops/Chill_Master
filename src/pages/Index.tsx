@@ -4,9 +4,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle, AirVent, Wrench, Wind, Zap, Droplets, ThermometerSnowflake, ShieldCheck, Clock, Users, Building2, CheckCircle2 } from "lucide-react";
 import { m, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
-import projectOffice from "@/assets/project-office.png";
-import projectWarehouse from "@/assets/project-warehouse.png";
-import projectVilla from "@/assets/project-villa.png";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
 import industrialBg from "@/assets/group-industrial-bg.png";
@@ -38,9 +35,69 @@ const whyChooseUs = [
 ];
 
 const projects = [
-  { image: projectOffice, title: "Commercial Office Tower HVAC", location: "Dubai, UAE", tags: ["VRF", "Ducting", "Automation"], description: "Complete VRF system and smart ductwork installation for a 12-storey commercial tower." },
-  { image: projectWarehouse, title: "Warehouse Industrial Cooling", location: "Abu Dhabi, UAE", tags: ["Industrial Cooling", "Ventilation"], description: "Industrial ventilation and cooling system for a 15,000 sqm logistics warehouse." },
-  { image: projectVilla, title: "Residential Villa AC System", location: "Sharjah, UAE", tags: ["Split AC", "Premium VRF"], description: "Premium split and VRF air conditioning installation for luxury residential villas." },
+  {
+    image: "/projects/safarigroupofcompanies.png",
+    title: "Safari Mall",
+    location: "UAE",
+    tags: ["Mall", "HVAC"],
+    description: "CLIENT: SAFARI GROUP OF COMPANIES | CONSULTANT: M/S CAPITAL ENGINEERING CONSULTANCY LLC"
+  },
+  {
+    image: "/projects/mrjowharaakkapparambil_villa1.png",
+    title: "Proposed (G+1+Roof) Villa",
+    location: "UAE",
+    tags: ["Villa", "Residential"],
+    description: "CLIENT: MR. JOWHAR AAKKAPPARAMBIL | CONSULTANT: M/S PROARC ARCHITECTS & ENGINEERING CONSULTANTS LLC"
+  },
+  {
+    image: "/projects/hotpackllc_1.png",
+    title: "Proposed Building (G+M+2), Warehouse (G+0), Showroom",
+    location: "UAE",
+    tags: ["Warehouse", "Showroom"],
+    description: "CLIENT: HOTPACK LLC | CONSULTANT: M/S UNITED CONSULTANCY OFFICE LLC"
+  },
+  {
+    image: "/projects/attaullahsafullahwaatqullahasmatullah.png",
+    title: "G+M+2 Building & Shed",
+    location: "UAE",
+    tags: ["Building", "Shed"],
+    description: "CLIENT: ATTAULLAH SAFULLAH WA ATQULLAH ASMATULLAH | CONSULTANT: M/S DELTA ENGINEERING CONSULTANTS LLC"
+  },
+  {
+    image: "/projects/hotpackllc_2.png",
+    title: "Proposed Warehouse",
+    location: "UAE",
+    tags: ["Warehouse", "Industrial"],
+    description: "CLIENT: HOTPACK LLC | CONSULTANT: M/S UNITED CONSULTANCY OFFICE LLC"
+  },
+  {
+    image: "/projects/mrjowharaakkapparambil_villa2.png",
+    title: "Proposed G+1+Villa+ Car Parking and CW",
+    location: "UAE",
+    tags: ["Villa", "Residential"],
+    description: "CLIENT: MR. JOWHAR AAKKAPPARAMBIL | CONSULTANT: M/S TRUE ENGINEERING CONSULTANTS LLC"
+  },
+  {
+    image: "/projects/mranwarkhamissaedalhakkamalali.png",
+    title: "G Showroom + G Sheds",
+    location: "UAE",
+    tags: ["Showroom", "Shed"],
+    description: "CLIENT: MR. ANWAR KHAMIS SAEED AL-HAKKAM AL-ALI | CONSULTANT: M/S INTERNATIONAL CONSULTANTS LLC"
+  },
+  {
+    image: "/projects/mrassadismailkayyali.png",
+    title: "G+1 Labour Accommodation 2 Nos",
+    location: "Al Jazeera, Rakia Freezone",
+    tags: ["Accommodation", "Residential"],
+    description: "CLIENT: MR. ASSAD ISMAIL KAYYALI | CONSULTANT: AL SAHEL ENGINEERING | VALUE: 6,000,000 AED"
+  },
+  {
+    image: "/projects/bmiindustriesfzllc.png",
+    title: "Proposed Warehouse",
+    location: "Al Hamra Freezone Rakia",
+    tags: ["Warehouse", "Industrial"],
+    description: "CLIENT: BMI INDUSTRIES FZ LLC | CONSULTANT: AL MANZIL ENGINEERING | PLOT: A96, A107 & 119 | VALUE: 13,000,000 AED"
+  },
 ];
 
 const heroBackgrounds = [
@@ -56,6 +113,23 @@ const Index = () => {
   const yBg = useTransform(scrollY, [0, 800], [0, 250]);
 
   const [serviceIndex, setServiceIndex] = useState(0);
+  const [projectIndex, setProjectIndex] = useState(0);
+  const [viewport, setViewport] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) setViewport('mobile');
+      else if (width < 1024) setViewport('tablet');
+      else setViewport('desktop');
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const cardsPerView = viewport === 'mobile' ? 1 : viewport === 'tablet' ? 2 : 3;
+  const maxIndex = projects.length - cardsPerView;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -70,6 +144,16 @@ const Index = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProjectIndex((prev) => {
+        const next = prev + 1;
+        return next > maxIndex ? 0 : next;
+      });
+    }, 4000); // Increased to 4s for better readability
+    return () => clearInterval(timer);
+  }, [maxIndex]);
 
   return (
     <>
@@ -420,12 +504,11 @@ const Index = () => {
 
       {/* Projects Preview */}
       <section className="section-padding relative overflow-hidden bg-slate-50/50">
-        {/* Background Grid */}
+        {/* Background Neutral Pattern */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 opacity-[0.15]" style={{
-            backgroundImage: `linear-gradient(to right, #3b82f6 1px, transparent 1px), 
-                              linear-gradient(to bottom, #3b82f6 1px, transparent 1px)`,
-            backgroundSize: '40px 40px'
+          <div className="absolute inset-0 opacity-[0.10]" style={{
+            backgroundImage: `radial-gradient(#94a3b8 1px, transparent 1px)`,
+            backgroundSize: '24px 24px'
           }} />
           <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
         </div>
@@ -436,10 +519,51 @@ const Index = () => {
             title="Proven Track Record Across Sectors"
             description="From commercial towers to industrial warehouses, our portfolio speaks for itself."
           />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.title} {...project} index={i} />
-            ))}
+          <div className="relative group/slider">
+            {/* Carousel View */}
+            <div className="overflow-hidden -mx-3">
+              <m.div 
+                animate={{ x: `calc(-${projectIndex * (100 / cardsPerView)}%)` }}
+                transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
+                className="flex"
+              >
+                {projects.map((project, i) => (
+                  <div key={project.title + i} className={`shrink-0 px-3 w-full md:w-1/2 lg:w-1/3`}>
+                    <ProjectCard {...project} index={i} />
+                  </div>
+                ))}
+              </m.div>
+            </div>
+
+            {/* Pagination Controls */}
+            <div className="flex justify-center gap-2 mt-10">
+              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => setProjectIndex(i)}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    projectIndex === i ? "w-10 bg-primary" : "w-2 bg-slate-200"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Hidden navigation buttons for manual control on hover */}
+            <div className="hidden md:flex absolute inset-y-0 -left-4 -right-4 items-center justify-between pointer-events-none">
+              <button 
+                onClick={() => setProjectIndex(prev => Math.max(0, prev - 1))}
+                className={`h-12 w-12 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-navy hover:bg-primary hover:text-white transition-all duration-300 pointer-events-auto group-hover/slider:opacity-100 opacity-0 ${projectIndex === 0 ? "invisible" : ""}`}
+              >
+                <ArrowRight className="h-5 w-5 rotate-180" />
+              </button>
+              <button 
+                onClick={() => setProjectIndex(prev => Math.min(maxIndex, prev + 1))}
+                className={`h-12 w-12 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-navy hover:bg-primary hover:text-white transition-all duration-300 pointer-events-auto group-hover/slider:opacity-100 opacity-0 ${projectIndex >= maxIndex ? "invisible" : ""}`}
+              >
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
           <div className="mt-10 text-center">
             <Button asChild variant="outline" className="rounded-none font-heading font-semibold">

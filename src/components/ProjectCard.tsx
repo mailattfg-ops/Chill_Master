@@ -1,4 +1,5 @@
 import { m } from "framer-motion";
+import { MapPin, Building2, ArrowUpRight } from "lucide-react";
 
 interface ProjectCardProps {
   image: string;
@@ -9,37 +10,39 @@ interface ProjectCardProps {
   index: number;
 }
 
-const ProjectCard = ({ image, title, location, tags, description, index }: ProjectCardProps) => {
+const ProjectCard = ({ image, title, location, description, index }: ProjectCardProps) => {
   return (
     <m.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group overflow-hidden rounded-none border border-border/60 bg-card transition-all hover:shadow-md"
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.215, 0.61, 0.355, 1] }}
+      className="relative overflow-hidden bg-navy rounded-[32px] border border-white/5 h-full flex flex-col shadow-none"
     >
-      <div className="aspect-[4/3] overflow-hidden">
+      {/* Image Container */}
+      <div className="relative aspect-[16/11] overflow-hidden m-2 rounded-[28px]">
         <img
           src={image}
           alt={title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover"
           loading="lazy"
-          decoding="async"
-          width="400"
-          height="300"
         />
       </div>
-      <div className="p-5">
-        <div className="mb-2 flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
-            <span key={tag} className="rounded-none bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary">
-              {tag}
-            </span>
-          ))}
+
+      {/* Content */}
+      <div className="p-7 pt-3 flex-1 flex flex-col pb-8">
+        <div className="flex items-center gap-2 mb-3">
+          <MapPin className="h-3 w-3 text-primary" />
+          <span className="text-[11px] font-black text-primary uppercase tracking-widest">{location}</span>
         </div>
-        <h3 className="mb-1 text-base font-semibold text-card-foreground">{title}</h3>
-        <p className="mb-2 text-xs text-muted-foreground">{location}</p>
-        <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
+        
+        <h3 className="text-xl font-black leading-[1.2] text-white mb-4">
+          {title}
+        </h3>
+        
+        <p className="text-[14px] leading-relaxed text-slate-300 font-medium line-clamp-4">
+          {description}
+        </p>
       </div>
     </m.div>
   );
