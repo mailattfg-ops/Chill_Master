@@ -7,16 +7,44 @@ import heroBg from "@/assets/hero-bg.jpg";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
 import industrialBg from "@/assets/group-industrial-bg.png";
-import ProjectCard from "@/components/ProjectCard";
 import CTAStrip from "@/components/CTAStrip";
 import SEO from "@/components/SEO";
-import whyChooseUsImg from "@/assets/why-choose-us.png";
+
+import podTrusted from "@/assets/pod-trusted.png";
+import podFast from "@/assets/pod-fast.png";
+import podCustom from "@/assets/pod-custom.png";
+import podExpert from "@/assets/pod-expert.png";
+import podSupport from "@/assets/pod-support.png";
 
 const services = [
-  { icon: AirVent, title: "HVAC Installation & AMC", description: "Residential and commercial air conditioning solutions including full system installation and AMC contracts.", image: "/service_install.png", tag: "Installation" },
-  { icon: Wrench, title: "Maintenance & Repair", description: "Preventive and corrective maintenance services for all HVAC systems across the UAE.", image: "/service_maintenance.png", tag: "Support" },
-  { icon: Wind, title: "Ventilation & Ducting", description: "GI duct fabrication and ventilation system installation with precise air balancing.", image: "/service_ventilation.png", tag: "Engineering" },
-  { icon: ThermometerSnowflake, title: "Industrial HVAC", description: "Specialized industrial cooling and HVAC solutions for warehouses and factories.", image: "/service_industrial.png", tag: "Industrial" },
+  { 
+    icon: ShieldCheck, 
+    title: "Annual Maintenance Contracts (AMCs)", 
+    description: "Avoid costly breakdowns and extend the life of your HVAC system with our flexible AMC packages. We offer both comprehensive and non-comprehensive HVAC maintenance services tailored to residential and commercial needs.", 
+    image: "/service_maintenance.png", 
+    tag: "Maintenance" 
+  },
+  { 
+    icon: AirVent, 
+    title: "HVAC System Replacement", 
+    description: "Full-scale HVAC AC service, including system replacement, installation, and commissioning for residential buildings, commercial complexes, and industrial sites.", 
+    image: "/service_install.png", 
+    tag: "Installation" 
+  },
+  { 
+    icon: Zap, 
+    title: "HVAC Upgrades, Retrofit & Modifications", 
+    description: "Modernize your existing HVAC system with our expert retrofit and upgrade solutions to improve energy efficiency and meet environmental standards.", 
+    image: "/service_industrial.png", 
+    tag: "Engineering" 
+  },
+  { 
+    icon: Wrench, 
+    title: "HVAC Repairs", 
+    description: "Quick diagnostics and on-site repairs to get your system back up and running fast, ensuring minimal downtime and restoring indoor comfort efficiently.", 
+    image: "/service_ventilation.png", 
+    tag: "Support" 
+  },
 ];
 
 const trustItems = [
@@ -34,72 +62,6 @@ const whyChooseUs = [
   { icon: CheckCircle2, title: "Documentation & Compliance", description: "Full project documentation, as-built drawings, and compliance certifications." },
 ];
 
-const projects = [
-  {
-    image: "/projects/safarigroupofcompanies.png",
-    title: "Safari Mall",
-    location: "UAE",
-    tags: ["Mall", "HVAC"],
-    description: "CLIENT: SAFARI GROUP OF COMPANIES | CONSULTANT: M/S CAPITAL ENGINEERING CONSULTANCY LLC"
-  },
-  {
-    image: "/projects/mrjowharaakkapparambil_villa1.png",
-    title: "Proposed (G+1+Roof) Villa",
-    location: "UAE",
-    tags: ["Villa", "Residential"],
-    description: "CLIENT: MR. JOWHAR AAKKAPPARAMBIL | CONSULTANT: M/S PROARC ARCHITECTS & ENGINEERING CONSULTANTS LLC"
-  },
-  {
-    image: "/projects/hotpackllc_1.png",
-    title: "Proposed Building (G+M+2), Warehouse (G+0), Showroom",
-    location: "UAE",
-    tags: ["Warehouse", "Showroom"],
-    description: "CLIENT: HOTPACK LLC | CONSULTANT: M/S UNITED CONSULTANCY OFFICE LLC"
-  },
-  {
-    image: "/projects/attaullahsafullahwaatqullahasmatullah.png",
-    title: "G+M+2 Building & Shed",
-    location: "UAE",
-    tags: ["Building", "Shed"],
-    description: "CLIENT: ATTAULLAH SAFULLAH WA ATQULLAH ASMATULLAH | CONSULTANT: M/S DELTA ENGINEERING CONSULTANTS LLC"
-  },
-  {
-    image: "/projects/hotpackllc_2.png",
-    title: "Proposed Warehouse",
-    location: "UAE",
-    tags: ["Warehouse", "Industrial"],
-    description: "CLIENT: HOTPACK LLC | CONSULTANT: M/S UNITED CONSULTANCY OFFICE LLC"
-  },
-  {
-    image: "/projects/mrjowharaakkapparambil_villa2.png",
-    title: "Proposed G+1+Villa+ Car Parking and CW",
-    location: "UAE",
-    tags: ["Villa", "Residential"],
-    description: "CLIENT: MR. JOWHAR AAKKAPPARAMBIL | CONSULTANT: M/S TRUE ENGINEERING CONSULTANTS LLC"
-  },
-  {
-    image: "/projects/mranwarkhamissaedalhakkamalali.png",
-    title: "G Showroom + G Sheds",
-    location: "UAE",
-    tags: ["Showroom", "Shed"],
-    description: "CLIENT: MR. ANWAR KHAMIS SAEED AL-HAKKAM AL-ALI | CONSULTANT: M/S INTERNATIONAL CONSULTANTS LLC"
-  },
-  {
-    image: "/projects/mrassadismailkayyali.png",
-    title: "G+1 Labour Accommodation 2 Nos",
-    location: "Al Jazeera, Rakia Freezone",
-    tags: ["Accommodation", "Residential"],
-    description: "CLIENT: MR. ASSAD ISMAIL KAYYALI | CONSULTANT: AL SAHEL ENGINEERING | VALUE: 6,000,000 AED"
-  },
-  {
-    image: "/projects/bmiindustriesfzllc.png",
-    title: "Proposed Warehouse",
-    location: "Al Hamra Freezone Rakia",
-    tags: ["Warehouse", "Industrial"],
-    description: "CLIENT: BMI INDUSTRIES FZ LLC | CONSULTANT: AL MANZIL ENGINEERING | PLOT: A96, A107 & 119 | VALUE: 13,000,000 AED"
-  },
-];
-
 const heroBackgrounds = [
   heroBg,
   "/hero_bg_chillers_v3.png",
@@ -113,7 +75,6 @@ const Index = () => {
   const yBg = useTransform(scrollY, [0, 800], [0, 250]);
 
   const [serviceIndex, setServiceIndex] = useState(0);
-  const [projectIndex, setProjectIndex] = useState(0);
   const [viewport, setViewport] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
 
   useEffect(() => {
@@ -128,9 +89,6 @@ const Index = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const cardsPerView = viewport === 'mobile' ? 1 : viewport === 'tablet' ? 2 : 3;
-  const maxIndex = projects.length - cardsPerView;
-
   useEffect(() => {
     const timer = setInterval(() => {
       setServiceIndex((prev) => (prev + 1) % services.length);
@@ -144,16 +102,6 @@ const Index = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProjectIndex((prev) => {
-        const next = prev + 1;
-        return next > maxIndex ? 0 : next;
-      });
-    }, 4000); // Increased to 4s for better readability
-    return () => clearInterval(timer);
-  }, [maxIndex]);
 
   return (
     <>
@@ -232,18 +180,21 @@ const Index = () => {
         }} />
 
         <div className="container-content relative z-10 pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
+          <m.div 
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl"
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl"
           >
-            <h1 className="text-[28px] md:text-6xl lg:text-7xl font-black leading-[1.2] tracking-tight text-white mb-6">
-              Engineered Climate Perfection in{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] via-primary to-[#DDB262]">UAE</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight mb-8 mt-4 flex flex-col items-start uppercase">
+              <span className="text-primary drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] tracking-wide">CHILLMASTER</span>
+              <span className="text-white/95 mt-1">THE COMPLETE</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] via-primary to-[#DDB262] drop-shadow-lg">
+                HVAC SOLUTION
+              </span>
             </h1>
-            <p className="mt-6 text-[13px] md:text-xl leading-relaxed text-slate-200 focus-visible: max-w-2xl font-medium drop-shadow-md">
-              Installation, maintenance, ducting, and ventilation for luxury residential, commercial, and industrial projects.
+            <p className="mt-6 text-[13px] md:text-base leading-relaxed text-slate-300 focus-visible: max-w-2xl font-medium">
+              At CHILLMASTER, we are your trusted HVAC partner, specializing in providing top-notch heating, ventilation, and air conditioning solutions for both residential and commercial properties. From installation and maintenance to repair and replacement our team of highly skilled technicians is dedicated to delivering excellence in every project we undertake.
             </p>
             <div className="mt-12 flex flex-wrap gap-4 items-center">
               <Button asChild className="h-14 md:h-[70px] px-8 md:px-10 rounded-full font-heading font-black tracking-widest uppercase text-[10px] md:text-xs shadow-2xl shadow-white/10 hover:shadow-white/20 hover:scale-105 transition-all duration-500 bg-white text-navy hover:bg-slate-50 border-0 group">
@@ -303,8 +254,7 @@ const Index = () => {
         <div className="container-content relative z-10">
           <SectionHeading
             tag="Our Services"
-            title="Engineering-Led HVAC Solutions"
-            description="Comprehensive HVAC services delivered with precision and compliance."
+            title="Our HVAC Services Include :"
           />
           {/* Mobile Carousel / Desktop Grid */}
           <div className="lg:hidden relative overflow-hidden py-4 -mx-4 px-4 sm:-mx-6 sm:px-6">
@@ -346,7 +296,7 @@ const Index = () => {
         {/* Background Industrial Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/group_industrial_bg_v2.png" 
+            src={industrialBg} 
             alt="Group industrial presence" 
             className="h-full w-full object-cover opacity-25"
             loading="lazy"
@@ -410,170 +360,151 @@ const Index = () => {
 
 
 
-      {/* Why Choose Us */}
-      <section className="py-16 md:py-20 relative bg-transparent">
-        {/* Top Centered Pill */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden xl:block">
-          <div className="flex items-center gap-3 rounded-none border border-border bg-white px-6 py-3 shadow-xl shadow-primary/5">
-            <span className="text-sm font-bold text-foreground">Why Choose Us</span>
-            <div className="flex h-7 w-7 items-center justify-center rounded-none bg-navy text-[10px] font-bold text-white">
-              03
-            </div>
-          </div>
+      {/* Why Choose Us - CREATIVE TECH EDITION */}
+      <section className="py-32 relative overflow-hidden bg-white border-y border-slate-100">
+        
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Moving Gradient Nodes */}
+          <m.div 
+            animate={{ 
+              x: [0, 100, 0], 
+              y: [0, -50, 0],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-primary/5 blur-[100px] rounded-full" 
+          />
+          <m.div 
+            animate={{ 
+              x: [0, -100, 0], 
+              y: [0, 50, 0],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-navy/5 blur-[120px] rounded-full" 
+          />
         </div>
 
+        {/* Technical Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.4]"
+          style={{
+            backgroundImage: `radial-gradient(#cbd5e1 1px, transparent 1px)`,
+            backgroundSize: '30px 30px'
+          }}
+        />
+
         <div className="container-content relative z-10">
-          <div className="grid gap-16 lg:grid-cols-2 items-center">
-            {/* Left Column: Content */}
-            <m.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="mb-6 flex items-center gap-2">
-                <div className="h-4 w-1 bg-primary rounded-full" />
-                <span className="text-xs font-bold uppercase tracking-widest text-primary">Why Choose Us</span>
-              </div>
-              
-              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl lg:text-5xl leading-[1.1]">
-                Nobody Knows HVAC Solutions <br className="hidden md:block" />
-                Like We Have <span className="text-primary">Perfected</span>
-              </h2>
-              
-              <p className="mt-6 text-base leading-relaxed text-muted-foreground max-w-lg">
-                We deliver engineering-led HVAC services with a 100% commitment to precision, safety, and client satisfaction across the UAE.
-              </p>
-
-              <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                {[
-                  { icon: ShieldCheck, title: "Certified Engineers", desc: "Expert teams with decades of combined UAE experience." },
-                  { icon: Clock, title: "Delivery On-time", desc: "Strict adherence to project timelines and milestones." },
-                  { icon: Users, title: "200+ Professionals", desc: "Scaling resources efficiently for any project size." },
-                  { icon: CheckCircle2, title: "QC Standards", desc: "Rigorous quality checks at every stage of execution." },
-                ].map((item, i) => (
-                  <div key={item.title} className="group">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-none bg-white shadow-lg shadow-primary/5 border border-primary/5 transition-all group-hover:bg-primary group-hover:text-white">
-                      <item.icon className="h-6 w-6 text-primary group-hover:text-white" />
-                    </div>
-                    <h4 className="text-lg font-bold text-foreground mb-1">{item.title}</h4>
-                    <p className="text-sm leading-relaxed text-muted-foreground sm:max-w-[200px]">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </m.div>
-
-            {/* Right Column: Image */}
+          
+          {/* Creative Heading */}
+          <div className="text-center mb-24 relative">
             <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative mt-8 lg:mt-0"
+              className="inline-block"
             >
-              {/* Decorative circle */}
-              <div className="absolute -right-12 top-12 h-48 w-48 lg:h-64 lg:w-64 rounded-none border-[1.5rem] border-primary/10 -z-10 hidden sm:block" />
-              
-              <div className="aspect-[16/10] overflow-hidden rounded-none shadow-2xl shadow-primary/10 border-4 sm:border-8 border-white max-w-[500px] mx-auto lg:max-w-none">
-                <img 
-                  src={whyChooseUsImg} 
-                  alt="Professional engineering team" 
-                  className="h-full w-full object-cover aspect-video lg:aspect-[4/5]" 
-                  loading="lazy"
-                  width="800"
-                  height="1000"
-                />
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-[1px] w-12 bg-primary/40" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Core Value Hub</span>
+                <div className="h-[1px] w-12 bg-primary/40" />
               </div>
-              
-              {/* Floating Stat Card */}
-              <div className="relative lg:absolute -mt-8 lg:mt-0 lg:-bottom-6 lg:left-12 lg:right-12 rounded-none bg-white p-4 lg:p-6 shadow-xl border border-primary/5 flex items-center justify-between max-w-[400px] mx-auto lg:max-w-none z-30">
-                <div className="flex-1 text-center lg:text-left">
-                  <div className="text-xl lg:text-2xl font-black text-navy leading-tight">2025</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-0.5">Established</div>
-                </div>
-                <div className="h-8 w-px bg-border mx-4" />
-                <div className="flex-1 text-center lg:text-left">
-                  <div className="text-xl lg:text-2xl font-black text-primary leading-tight">UAE</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-0.5">Pan-UAE Service</div>
-                </div>
-              </div>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase text-navy tracking-tighter mb-6 relative">
+                Why Choose <span className="text-primary">Chill Master</span>
+              </h2>
+              <p className="text-sm md:text-base text-slate-500 max-w-2xl mx-auto font-medium tracking-wide">
+                Expert excellence combined with premium HVAC solutions across UAE's most demanding environments.
+              </p>
             </m.div>
           </div>
-        </div>
-      </section>
 
-      {/* Projects Preview */}
-      <section className="section-padding relative overflow-hidden bg-slate-50/50">
-        {/* Background Neutral Pattern */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 opacity-[0.10]" style={{
-            backgroundImage: `radial-gradient(#94a3b8 1px, transparent 1px)`,
-            backgroundSize: '24px 24px'
-          }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
-        </div>
-
-        <div className="container-content relative z-10">
-          <SectionHeading
-            tag="Our Projects"
-            title="Proven Track Record Across Sectors"
-            description="From commercial towers to industrial warehouses, our portfolio speaks for itself."
-          />
-          <div className="relative group/slider">
-            {/* Carousel View */}
-            <div className="overflow-hidden -mx-3">
+          <div className="flex flex-col gap-6 relative z-10 max-w-6xl mx-auto px-4 lg:px-0">
+            {[
+              { 
+                title: "Trusted HVAC Services", 
+                image: podTrusted,
+                icon: ShieldCheck,
+                id: "01",
+                desc: "Professional heating, ventilation, and air-conditioning solutions for residential and commercial properties across Dubai." 
+              },
+              { 
+                title: "Fast On-Site Response", 
+                image: podFast,
+                icon: Clock,
+                id: "02",
+                desc: "Skilled HVAC technicians available for rapid inspections, diagnostics, and site assessments anywhere in Dubai." 
+              },
+              { 
+                title: "Customized HVAC Care", 
+                image: podCustom,
+                icon: ThermometerSnowflake,
+                id: "03",
+                desc: "Tailored installation, repair, and maintenance solutions to match your cooling, airflow, and energy-efficiency needs." 
+              },
+              { 
+                title: "Complete HVAC Expertise", 
+                image: podExpert,
+                icon: Zap,
+                id: "04",
+                desc: "End-to-end services including installation, preventive maintenance, repairs, ducting, airflow balancing, and system optimization." 
+              },
+              { 
+                title: "Reliable Ongoing Support", 
+                image: podSupport,
+                icon: Users,
+                id: "05",
+                desc: "Dedicated maintenance contracts ensuring consistent performance, comfort, and long-term system reliability." 
+              }
+            ].map((item, i) => (
               <m.div 
-                animate={{ x: `calc(-${projectIndex * (100 / cardsPerView)}%)` }}
-                transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-                className="flex"
+                key={item.title}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="group relative h-[300px] md:h-[220px] w-full overflow-hidden bg-navy shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100/10 flex items-center"
               >
-                {projects.map((project, i) => (
-                  <div key={project.title + i} className={`shrink-0 px-3 w-full md:w-1/2 lg:w-1/3`}>
-                    <ProjectCard {...project} index={i} />
+                {/* Background Image with Zoom */}
+                <div className="absolute inset-0 z-0">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="h-full w-full object-cover grayscale-[40%] brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out" 
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent z-10" />
+                </div>
+
+                {/* Content Layer */}
+                <div className="relative z-20 flex flex-col md:flex-row items-center gap-8 w-full p-8 md:p-12">
+                  <div className="hidden md:flex h-16 w-16 shrink-0 bg-primary/10 border border-primary/20 backdrop-blur-md items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
+                    <item.icon className="h-8 w-8 text-primary group-hover:text-navy transition-colors" />
                   </div>
-                ))}
+
+                  <div className="flex-1 text-center md:text-left">
+                    <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter leading-tight mb-3 transition-colors group-hover:text-primary">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm md:text-base leading-relaxed text-slate-300 font-medium max-w-2xl mx-auto md:mx-0">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  {/* Aesthetic Technical Border (Hover Only) */}
+                  <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/20 transition-all pointer-events-none" />
+                </div>
+
+                {/* Left Accent Bar */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/40 group-hover:w-2 group-hover:bg-primary transition-all" />
               </m.div>
-            </div>
-
-            {/* Pagination Controls */}
-            <div className="flex justify-center gap-2 mt-10">
-              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-                <button 
-                  key={i} 
-                  onClick={() => setProjectIndex(i)}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    projectIndex === i ? "w-10 bg-primary" : "w-2 bg-slate-200"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* Hidden navigation buttons for manual control on hover */}
-            <div className="hidden md:flex absolute inset-y-0 -left-4 -right-4 items-center justify-between pointer-events-none">
-              <button 
-                onClick={() => setProjectIndex(prev => Math.max(0, prev - 1))}
-                className={`h-12 w-12 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-navy hover:bg-primary hover:text-white transition-all duration-300 pointer-events-auto group-hover/slider:opacity-100 opacity-0 ${projectIndex === 0 ? "invisible" : ""}`}
-              >
-                <ArrowRight className="h-5 w-5 rotate-180" />
-              </button>
-              <button 
-                onClick={() => setProjectIndex(prev => Math.min(maxIndex, prev + 1))}
-                className={`h-12 w-12 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center text-navy hover:bg-primary hover:text-white transition-all duration-300 pointer-events-auto group-hover/slider:opacity-100 opacity-0 ${projectIndex >= maxIndex ? "invisible" : ""}`}
-              >
-                <ArrowRight className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
-          <div className="mt-10 text-center">
-            <Button asChild variant="outline" className="rounded-none font-heading font-semibold">
-              <Link to="/projects">
-                View All Projects <ArrowRight className="ml-1.5 h-4 w-4" />
-              </Link>
-            </Button>
+            ))}
           </div>
         </div>
       </section>
+
+
 
       {/* CTA */}
       <CTAStrip />

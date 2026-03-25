@@ -86,16 +86,7 @@ const About = () => {
             <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
               Founded in 2025, Chill Master is part of a UAE-based industrial group led by Mr. Jowhar A., delivering reliable HVAC solutions backed by decades of Group-wide engineering excellence.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <a 
-                href="http://thetimesofgulf.com/2026/02/23/the-industrial-empire-of-jowhar-a-a-deep-dive-into-dufe-lube-flash-contracting-and-al-baraq-steels-pan-uae-expansion/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-xs font-medium text-navy-foreground/40 hover:text-primary transition-colors flex items-center gap-1.5 underline underline-offset-4"
-              >
-                Read about our industrial group on Times of Gulf
-              </a>
-            </div>
+
           </m.div>
         </div>
       </section>
@@ -119,11 +110,11 @@ const About = () => {
                 transition={{ duration: 0.7 }}
               >
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-                  <Eye className="h-7 w-7 text-primary" />
+                  <Target className="h-7 w-7 text-primary" />
                 </div>
                 <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Our Vision</h3>
                 <p className="text-lg leading-relaxed text-muted-foreground font-medium">
-                  To be the most trusted HVAC partner for developers, contractors, and facility owners in the UAE — known for engineering precision and responsive execution.
+                  To become a leading and trusted technical service provider in the UAE, recognized for excellence, innovation, and long-term client relationships.
                 </p>
                 <div className="mt-8 flex items-center gap-4 border-l-4 border-primary pl-6 py-2">
                   <span className="text-sm font-bold text-foreground/80 uppercase tracking-widest italic">Innovation • Precision • Trust</span>
@@ -150,8 +141,8 @@ const About = () => {
                 </div>
                 <div className="absolute -bottom-6 -left-6 h-32 w-32 rounded-none bg-navy p-6 flex items-center justify-center hidden md:flex">
                   <div className="h-full w-full rounded-none border border-white/20 flex flex-col items-center justify-center">
-                    <span className="text-2xl font-black text-white leading-none">2025</span>
-                    <span className="text-[8px] text-white/60 font-bold uppercase tracking-widest mt-1">Vision</span>
+                    <Target className="h-8 w-8 text-primary" />
+                    <span className="text-[10px] text-white/60 font-bold uppercase tracking-widest mt-2">UAE HUB</span>
                   </div>
                 </div>
               </m.div>
@@ -196,7 +187,7 @@ const About = () => {
                 </div>
                 <h3 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Our Mission</h3>
                 <p className="text-lg leading-relaxed text-muted-foreground font-medium">
-                  To deliver end-to-end HVAC solutions with documented quality, safety compliance, and on-time project delivery.
+                  To deliver high-quality HVAC and technical services through innovation, expertise, and a strong commitment to customer satisfaction—ensuring comfort, efficiency, and long-term reliability.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   {["Quality QC", "HSE Safety", "Timely Delivery"].map(tag => (

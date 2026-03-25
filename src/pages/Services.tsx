@@ -11,29 +11,36 @@ import serviceIndustrial from "@/assets/service-industrial.png";
 
 const services = [
   {
-    icon: AirVent,
-    title: "HVAC Installation & AMC Services",
-    description: "Complete HVAC system design and execution for residential and commercial buildings, specialized for the UAE climate with comprehensive AMC support.",
-    includes: ["System design & engineering", "Installation & Commissioning", "Preventive Maintenance", "AMC Contracts", "24/48hr Response"],
-    idealFor: ["Luxury Villas", "Commercial Towers", "Retail Units"],
+    icon: Wrench,
+    title: "Annual Maintenance Contracts (AMCs)",
+    description: "Avoid costly breakdowns and extend the life of your HVAC system with our flexible AMC packages. We offer both comprehensive and non-comprehensive HVAC maintenance services tailored to residential and commercial needs. Regular inspections, cleaning, and system checks help improve energy efficiency, reduce operational costs, and ensure uninterrupted comfort throughout the year.",
+    includes: ["Regular system inspections", "Deep cleaning services", "Energy efficiency audits", "Reduced operational costs", "Comprehensive & Non-comprehensive plans"],
+    idealFor: ["Luxury Villas", "Commercial Blocks", "Hotels"],
     image: serviceHvac,
   },
   {
-    icon: Wind,
-    title: "Ventilation, Ducting & Exhaust",
-    description: "GI duct fabrication and installation for fresh air, kitchen exhaust, and smoke management systems following international standards.",
-    includes: ["GI duct fabrication", "Kitchen exhaust systems", "Fresh air intake", "Smoke extraction", "Air balancing"],
-    idealFor: ["Restaurants", "Industrial Warehouses", "Basements"],
+    icon: AirVent,
+    title: "HVAC System Replacement",
+    description: "We provide full-scale HVAC AC service, including system replacement, installation, and commissioning for residential buildings, commercial complexes, and industrial sites. Our team handles everything from load calculation and system design to installation and performance testing, ensuring your new HVAC unit is optimized for efficiency, durability, and long-term savings.",
+    includes: ["Load calculations", "System design & engineering", "Installation & Commissioning", "Performance testing", "Optimization for efficiency"],
+    idealFor: ["Apartment Complexes", "Office Buildings", "Warehouses"],
     image: serviceDucting,
   },
-
   {
-    icon: ThermometerSnowflake,
-    title: "Industrial HVAC Systems",
-    description: "Large-scale climate control and process cooling solutions for factories, warehouses, and industrial plants across the UAE.",
-    includes: ["Process cooling", "Factory ventilation", "Warehouse climate control", "Cold storage", "Chiller maintenance"],
-    idealFor: ["Factories", "Logistics Hubs", "Cold Storage Units"],
+    icon: Zap,
+    title: "HVAC Upgrades, Retrofit & Modifications",
+    description: "Modernize your existing HVAC system with our expert retrofit and upgrade solutions. Whether you're looking to improve energy efficiency, meet new environmental standards, or optimize system performance, our HVAC service team designs solutions that align with your goals—while minimizing disruption to ongoing operations.",
+    includes: ["Energy efficiency retrofits", "Control system upgrades", "Environmental compliance", "Performance optimization", "Non-disruptive installation"],
+    idealFor: ["Old Buildings", "Industrial Plants", "Shopping Malls"],
     image: serviceIndustrial,
+  },
+  {
+    icon: Wrench,
+    title: "HVAC Repairs",
+    description: "Need urgent HVAC repair service in Dubai? Our experienced technicians provide quick diagnostics and on-site repairs to get your system back up and running fast. We handle everything from minor issues to major breakdowns—ensuring minimal downtime and restoring indoor comfort efficiently.",
+    includes: ["24/7 Emergency repairs", "Quick system diagnostics", "On-site component replacement", "System performance restoration", "Minimal operational downtime"],
+    idealFor: ["Urgent Breakdowns", "Dubai Projects", "Critical Facilities"],
+    image: serviceHvac,
   },
 ];
 
@@ -103,22 +110,18 @@ const Services = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
         </div>
-        <div className="container-content relative z-10">
+        <div className="container-content relative z-10 flex flex-col items-center text-center">
           <m.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl"
+            className="max-w-4xl"
           >
-            <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-xl">
-              <span className="h-2 w-2 rounded-full bg-primary" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">Corporate Solutions</span>
-            </div>
             <h1 className="text-4xl font-black tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.1] mb-6">
-              Precision <br /> HVAC <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">Solutions</span>
+              Our HVAC <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">Services Include :</span>
             </h1>
-            <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
-              From high-precision installation to ongoing maintenance, we deliver engineering-led climate solutions for UAE's most demanding environments.
+            <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 mx-auto font-medium drop-shadow-md">
+              At our HVAC Division, We deliver comprehensive HVAC services backed by certified technicians and advanced diagnostic tools, ensuring exceptional system performance, energy efficiency, and operational reliability. As trusted HVAC service providers in Dubai and the UAE, we offer complete maintenance, repair, and installation solutions that maximize equipment lifespan while minimizing operational costs for residential, commercial, and industrial clients.
             </p>
           </m.div>
         </div>
@@ -197,51 +200,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* AMC Section */}
-      <section className="section-padding bg-steel relative overflow-hidden">
-        <div className="container-content">
-          <SectionHeading
-            tag="AMC Plans"
-            title="Annual Maintenance Contracts"
-            description="Keep your systems running at peak performance with our flexible AMC packages."
-          />
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
-            {[
-              { plan: "Basic", frequency: "Quarterly", features: ["4 visits/year", "Filter cleaning", "Performance check", "Basic reporting"] },
-              { plan: "Standard", frequency: "Bi-monthly", features: ["6 visits/year", "All Basic features", "Refrigerant top-up", "Priority response"] },
-              { plan: "Premium", frequency: "Monthly", features: ["12 visits/year", "All Standard features", "Emergency support", "Detailed analytics"] },
-            ].map((pkg, i) => (
-              <m.div
-                key={pkg.plan}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`rounded-none border bg-card p-6 ${i === 2 ? "border-primary" : "border-border/60"}`}
-              >
-                {i === 2 && (
-                  <span className="mb-3 inline-block rounded-none bg-primary px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground">
-                    Most Popular
-                  </span>
-                )}
-                <h3 className="text-lg font-bold text-card-foreground">{pkg.plan}</h3>
-                <p className="mb-4 text-xs text-muted-foreground">{pkg.frequency} visits</p>
-                <ul className="space-y-2">
-                  {pkg.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-card-foreground">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="mt-5 w-full rounded-lg font-heading font-semibold" size="sm" variant={i === 2 ? "default" : "outline"}>
-                  <Link to="/contact">Get AMC Quote</Link>
-                </Button>
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <CTAStrip />
     </>

@@ -21,7 +21,6 @@ import SEO from "@/components/SEO";
 const Contact = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [service, setService] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,9 +29,10 @@ const Contact = () => {
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
     const requirements = formData.get("requirements") as string;
 
-    const message = `*New Technical Inquiry*\n\n*Name:* ${name}\n*Email:* ${email}\n*Service:* ${service || "Not Specified"}\n*Requirements:* ${requirements}`;
+    const message = `*New Technical Inquiry*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Requirements:* ${requirements}`;
     const whatsappUrl = `https://wa.me/971551029597?text=${encodeURIComponent(message)}`;
 
     setTimeout(() => {
@@ -43,7 +43,6 @@ const Contact = () => {
         description: "Your inquiry details have been prepared.",
       });
       (e.target as HTMLFormElement).reset();
-      setService("");
     }, 800);
   };
 
@@ -112,7 +111,7 @@ const Contact = () => {
             <h1 className="max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
               Connect with our{" "}
               <span className="bg-gradient-to-r from-[#DDB262] to-[#fcc968] bg-clip-text text-transparent">
-                Engineers
+                ChillMaster Team
               </span>
             </h1>
 
@@ -149,9 +148,7 @@ const Contact = () => {
                     Let’s start your HVAC project
                   </h2>
                   <p className="mt-3 max-w-xl text-sm leading-6 text-white/65 sm:text-base">
-                    Share your project details, BOQ requirements, service scope,
-                    or technical support needs. Our team will review and respond
-                    quickly.
+                    Share your project details, service scope, or technical support needs. Our team will review and respond quickly.
                   </p>
                 </div>
 
@@ -185,20 +182,15 @@ const Contact = () => {
 
                   <div className="space-y-2.5">
                     <label className="ml-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
-                      Service Requirement
+                      Phone Number
                     </label>
-                    <Select onValueChange={setService} required>
-                      <SelectTrigger className="h-12 rounded-2xl border-white/10 bg-white/5 px-4 text-sm text-white focus:border-primary focus:ring-0 sm:h-14 sm:px-5">
-                        <SelectValue placeholder="Select interest service category" />
-                      </SelectTrigger>
-                      <SelectContent className="rounded-2xl border-white/10 bg-navy text-white">
-                        <SelectItem value="hvac-installation" className="focus:bg-white/10 focus:text-white">HVAC Installation & AMC</SelectItem>
-                        <SelectItem value="maintenance-repair" className="focus:bg-white/10 focus:text-white">Maintenance & Repair</SelectItem>
-                        <SelectItem value="ventilation-ducting" className="focus:bg-white/10 focus:text-white">Ventilation & Ducting</SelectItem>
-                        <SelectItem value="industrial-hvac" className="focus:bg-white/10 focus:text-white">Industrial HVAC Solutions</SelectItem>
-                        <SelectItem value="other" className="focus:bg-white/10 focus:text-white">Other / Multiple Requirements</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Input
+                      required
+                      name="phone"
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      className="h-12 rounded-2xl border-white/10 bg-white/5 px-4 text-sm text-white placeholder:text-white/25 focus:border-primary sm:h-14 sm:px-5"
+                    />
                   </div>
 
                   <div className="space-y-2.5">

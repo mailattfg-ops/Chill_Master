@@ -8,7 +8,6 @@ const navItems = [
   { label: "Home", path: "/", end: true },
   { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
-  { label: "Projects", path: "/projects" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -119,7 +118,7 @@ const Header = () => {
 
         <div className="flex items-center gap-3">
           <Button asChild className="rounded-full bg-navy text-white hover:bg-primary transition-all duration-500 px-6 h-9 font-black tracking-widest uppercase text-[9px] hidden sm:flex">
-            <Link to="/contact">Quote</Link>
+            <Link to="/contact">Get a quote</Link>
           </Button>
 
           {/* Mobile toggle */}
@@ -197,7 +196,7 @@ const Header = () => {
                     className="w-full h-14 rounded-2xl bg-navy text-white hover:bg-primary active:scale-[0.98] transition-all font-black uppercase tracking-widest text-[11px] shadow-lg shadow-navy/10"
                     onClick={(e) => handleNav("/contact", e)}
                   >
-                    <Link to="/contact">Free Quote</Link>
+                    <Link to="/contact">Get a quote</Link>
                   </Button>
                 </div>
               </div>
