@@ -48,7 +48,7 @@ const About = () => {
     <>
       <SEO 
         title="About Us | Chill Master HVAC Solutions"
-        description="Learn about Chill Master, a part of Jowhar A. Group, delivering engineering excellence in HVAC solutions across the UAE since 2025."
+        description="Learn about Chill Master, a part of Jowhar A. Group, delivering engineering excellence in HVAC solutions across the UAE."
         canonical="https://chillmaster.ae/about"
       />
       {/* Hero */}
@@ -84,7 +84,7 @@ const About = () => {
               Engineering <br /> Perfection <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] to-[#fcc968]">at Scale</span>
             </h1>
             <p className="mt-6 text-sm md:text-xl leading-relaxed text-slate-200/80 max-w-2xl font-medium drop-shadow-md">
-              Founded in 2025, Chill Master is part of a UAE-based industrial group led by Mr. Jowhar A., delivering reliable HVAC solutions backed by decades of Group-wide engineering excellence.
+              Chill Master is part of a UAE-based industrial group led by Mr. Jowhar A., delivering reliable HVAC solutions backed by decades of Group-wide engineering excellence.
             </p>
 
           </m.div>

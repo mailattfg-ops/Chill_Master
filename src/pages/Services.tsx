@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { m } from "framer-motion";
-import { AirVent, Wrench, Wind, Zap, Droplets, ThermometerSnowflake, ArrowRight, CheckCircle2 } from "lucide-react";
+import { AirVent, Wrench, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import CTAStrip from "@/components/CTAStrip";
@@ -11,35 +11,27 @@ import serviceIndustrial from "@/assets/service-industrial.png";
 
 const services = [
   {
-    icon: Wrench,
-    title: "Annual Maintenance Contracts (AMCs)",
-    description: "Avoid costly breakdowns and extend the life of your HVAC system with our flexible AMC packages. We offer both comprehensive and non-comprehensive HVAC maintenance services tailored to residential and commercial needs. Regular inspections, cleaning, and system checks help improve energy efficiency, reduce operational costs, and ensure uninterrupted comfort throughout the year.",
-    includes: ["Regular system inspections", "Deep cleaning services", "Energy efficiency audits", "Reduced operational costs", "Comprehensive & Non-comprehensive plans"],
-    idealFor: ["Luxury Villas", "Commercial Blocks", "Hotels"],
-    image: serviceHvac,
-  },
-  {
     icon: AirVent,
-    title: "HVAC System Replacement",
+    title: "Ac installation and replacement",
     description: "We provide full-scale HVAC AC service, including system replacement, installation, and commissioning for residential buildings, commercial complexes, and industrial sites. Our team handles everything from load calculation and system design to installation and performance testing, ensuring your new HVAC unit is optimized for efficiency, durability, and long-term savings.",
-    includes: ["Load calculations", "System design & engineering", "Installation & Commissioning", "Performance testing", "Optimization for efficiency"],
-    idealFor: ["Apartment Complexes", "Office Buildings", "Warehouses"],
     image: serviceDucting,
   },
   {
     icon: Zap,
     title: "HVAC Upgrades, Retrofit & Modifications",
     description: "Modernize your existing HVAC system with our expert retrofit and upgrade solutions. Whether you're looking to improve energy efficiency, meet new environmental standards, or optimize system performance, our HVAC service team designs solutions that align with your goals—while minimizing disruption to ongoing operations.",
-    includes: ["Energy efficiency retrofits", "Control system upgrades", "Environmental compliance", "Performance optimization", "Non-disruptive installation"],
-    idealFor: ["Old Buildings", "Industrial Plants", "Shopping Malls"],
     image: serviceIndustrial,
   },
   {
     icon: Wrench,
     title: "HVAC Repairs",
     description: "Need urgent HVAC repair service in Dubai? Our experienced technicians provide quick diagnostics and on-site repairs to get your system back up and running fast. We handle everything from minor issues to major breakdowns—ensuring minimal downtime and restoring indoor comfort efficiently.",
-    includes: ["24/7 Emergency repairs", "Quick system diagnostics", "On-site component replacement", "System performance restoration", "Minimal operational downtime"],
-    idealFor: ["Urgent Breakdowns", "Dubai Projects", "Critical Facilities"],
+    image: serviceHvac,
+  },
+  {
+    icon: Wrench,
+    title: "Annual Maintenance Contracts (AMCs)",
+    description: "Avoid costly breakdowns and extend the life of your HVAC system with our flexible AMC packages. We offer both comprehensive and non-comprehensive HVAC maintenance services tailored to residential and commercial needs. Regular inspections, cleaning, and system checks help improve energy efficiency, reduce operational costs, and ensure uninterrupted comfort throughout the year.",
     image: serviceHvac,
   },
 ];
@@ -146,29 +138,6 @@ const Services = () => {
                 <h2 className="mb-6 text-3xl font-black text-navy leading-tight md:text-4xl">{service.title}</h2>
                 <p className="text-sm md:text-lg leading-relaxed text-muted-foreground/80 font-medium">{service.description}</p>
 
-                <div className="mt-10 grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="mb-4 text-[11px] font-black uppercase tracking-widest text-primary border-b border-primary/10 pb-2">Technical Scope</h4>
-                    <ul className="space-y-3">
-                      {service.includes.map((item) => (
-                        <li key={item} className="flex items-start gap-3 text-xs md:text-sm text-foreground font-semibold">
-                          <CheckCircle2 className="h-4 w-4 shrink-0 text-primary mt-0.5" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="p-6 rounded-3xl bg-slate-50/80 border border-slate-100 h-fit">
-                    <h4 className="mb-4 text-[11px] font-black uppercase tracking-widest text-navy border-b border-navy/5 pb-2">Ideal Building Type</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.idealFor.map((tag) => (
-                        <span key={tag} className="px-3 py-1.5 rounded-full bg-white text-[10px] font-black text-navy border border-slate-200 shadow-sm uppercase tracking-wider">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
 
                 <div className="mt-10">
                   <Button asChild className="h-14 px-10 rounded-full font-heading font-black bg-navy text-white hover:bg-primary transition-all uppercase tracking-widest text-[10px] shadow-xl group">
