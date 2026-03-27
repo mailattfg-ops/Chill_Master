@@ -18,15 +18,8 @@ import podSupport from "@/assets/pod-support.png";
 
 const services = [
   { 
-    icon: ShieldCheck, 
-    title: "Annual Maintenance Contracts (AMCs)", 
-    description: "Avoid costly breakdowns and extend the life of your HVAC system with our flexible AMC packages. We offer both comprehensive and non-comprehensive HVAC maintenance services tailored to residential and commercial needs.", 
-    image: "/service_maintenance.png", 
-    tag: "Maintenance" 
-  },
-  { 
     icon: AirVent, 
-    title: "HVAC System Replacement", 
+    title: "Ac installation and replacement", 
     description: "Full-scale HVAC AC service, including system replacement, installation, and commissioning for residential buildings, commercial complexes, and industrial sites.", 
     image: "/service_install.png", 
     tag: "Installation" 
@@ -44,6 +37,13 @@ const services = [
     description: "Quick diagnostics and on-site repairs to get your system back up and running fast, ensuring minimal downtime and restoring indoor comfort efficiently.", 
     image: "/service_ventilation.png", 
     tag: "Support" 
+  },
+  { 
+    icon: ShieldCheck, 
+    title: "Annual Maintenance Contracts (AMCs)", 
+    description: "Avoid costly breakdowns and extend the life of your HVAC system with our flexible AMC packages. We offer both comprehensive and non-comprehensive HVAC maintenance services tailored to residential and commercial needs.", 
+    image: "/service_maintenance.png", 
+    tag: "Maintenance" 
   },
 ];
 

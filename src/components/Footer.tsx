@@ -39,10 +39,10 @@ const Footer = () => {
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-navy-foreground/50">Services</h4>
             <nav className="flex flex-col gap-2.5">
               {[
-                "HVAC Installation",
+                "Ac installation and replacement",
+                "HVAC Upgrades & Retrofit",
+                "HVAC Repairs",
                 "Maintenance & AMC",
-                "Ventilation & Ducting",
-                "Industrial Cooling",
               ].map((s) => (
                 <Link key={s} to="/services" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                   {s}
