@@ -40,9 +40,9 @@ const Footer = () => {
             <nav className="flex flex-col gap-2.5">
               {[
                 "Ac installation and replacement",
-                "HVAC Upgrades & Retrofit",
+                "HVAC Upgrades, Retrofit & Modifications",
                 "HVAC Repairs",
-                "Maintenance & AMC",
+                "Annual Maintenance Contracts (AMCs)",
               ].map((s) => (
                 <Link key={s} to="/services" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                   {s}
