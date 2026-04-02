@@ -6,19 +6,62 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+lint_output.txt
 
-node_modules
-dist
-dist-ssr
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Bun
+bun.lockb
+.bun-build/
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+out/
+.vercel
+.output/
+
+# Tests
+coverage/
+__snapshots__/
+.vitest.result.json
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 *.local
+
+# OS related files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.cache
+
+# Formatting / Linting
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# Temporary files
+tmp/
+temp/
