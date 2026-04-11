@@ -202,7 +202,7 @@ const Index = () => {
                 </div>
                 
                 <div className="flex flex-col mt-2 sm:mt-1 font-poppins text-white/90">
-                  <p className="text-xs md:text-xl lg:text-2xl tracking-[0.45em] font-medium uppercase w-full italic">
+                  <p className="text-[10px] xs:text-xs md:text-xl lg:text-2xl tracking-[0.2em] xs:tracking-[0.45em] font-medium uppercase w-full italic whitespace-nowrap">
                     THE COMPLETE HVAC SOLUTIONS
                   </p>
                 </div>
