@@ -116,6 +116,123 @@
 
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-glow to-primary;
+    background-size: 200% auto;
+    animation: gradient-x 8s linear infinite;
+  }
+
+  @keyframes gradient-x {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient-x {
+    animation: gradient-x 5s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  /* Liquid Glass Mirror Effect */
+  .mirror-glass {
+    @apply text-white/20 select-none;
+    background: linear-gradient(180deg, 
+      rgba(255,255,255,0.5) 0%, 
+      rgba(255,255,255,0.1) 45%, 
+      rgba(255,255,255,0.3) 50%, 
+      rgba(255,255,255,0.1) 55%, 
+      rgba(255,255,255,0.4) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    text-shadow: 
+      2px 2px 4px rgba(255,255,255,0.3),
+      -1px -1px 0px rgba(255,255,255,0.8),
+      2px 4px 8px rgba(0,0,0,0.6);
+  }
+
+  .mirror-glass-blue {
+    @apply select-none;
+    background: linear-gradient(180deg, 
+      rgba(0,45,114,0.9) 0%, 
+      rgba(0,45,114,0.4) 45%, 
+      rgba(255,255,255,0.6) 50%, 
+      rgba(0,45,114,0.3) 55%, 
+      rgba(0,45,114,0.8) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,45,114,0.4);
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    text-shadow: 
+      1px 1px 2px rgba(255,255,255,0.2),
+      -1px -1px 0px rgba(255,255,255,0.4),
+      2px 4px 8px rgba(0,0,0,0.5);
+  }
+
+  /* Varsity Sports 3D Effect - HIGH FIDELITY VERSION */
+  .sports-3d {
+    @apply select-none font-chakra font-bold inline-block;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    
+    /* Center Fill: White/Silver Gradient */
+    background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 45%, #CBD5E0 50%, #EDF2F7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    /* Primary Blue Stroke */
+    -webkit-text-stroke: 2px #0046AD;
+    
+    /* Sharp Staircase Depth Effect (avoiding the 'blob' look) */
+    text-shadow: 
+      1px 1px 0px #003399,
+      2px 2px 0px #003399,
+      3px 3px 0px #003399,
+      4px 4px 0px #003399,
+      5px 5px 0px #003399,
+      6px 6px 0px #003399,
+      -1px -1px 0px rgba(255,255,255,0.2),
+      0px 10px 20px rgba(0,0,0,0.5);
+  }
+
+  /* High-Fidelity Electric Chill Effect */
+  .chill-gloss {
+    @apply select-none font-outfit font-black italic;
+    letter-spacing: -0.02em;
+    
+    /* Complex Gel Gradient Fill */
+    background: linear-gradient(180deg, 
+      #FFFFFF 0%, 
+      #F0F9FF 35%, 
+      #BAE6FD 45%, 
+      #7DD3FC 50%, 
+      #0EA5E9 55%, 
+      #0369A1 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    /* High-Contrast Double Stroke */
+    -webkit-text-stroke: 1px #0A2F50;
+    
+    /* Refined Depth & Glow */
+    filter: drop-shadow(0 0 15px rgba(125,211,252,0.4));
+    text-shadow: 
+      0px 1px 0px #0A2F50,
+      0px 2px 0px #0A2F50,
+      0px 3px 0px #0A2F50,
+      0px 4px 10px rgba(0,0,0,0.5);
+  }
+
+  .sparkle {
+    @apply absolute pointer-events-none text-white text-lg;
+    filter: drop-shadow(0 0 10px #7DD3FC);
+    user-select: none;
   }
 }

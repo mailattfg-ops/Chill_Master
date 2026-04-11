@@ -186,13 +186,28 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight mb-8 mt-4 flex flex-col items-start uppercase">
-              <span className="text-primary drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] tracking-wide">CHILLMASTER</span>
-              <span className="text-white/95 mt-1">THE COMPLETE</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#DDB262] via-primary to-[#DDB262] drop-shadow-lg">
-                HVAC SOLUTION
-              </span>
-            </h1>
+            <div className="flex flex-col items-start mb-10">
+              <h1 className="flex flex-col items-start leading-none">
+                <div className="relative group">
+                  <h1 className="relative text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-outfit font-black tracking-tight sm:tracking-tighter flex items-center select-none leading-none">
+                    <span 
+                      style={{ 
+                        textShadow: "0 10px 20px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2)"
+                      }} 
+                      className="bg-gradient-to-b from-[#7DD3FC] to-[#0EA5E9] bg-clip-text text-transparent"
+                    >
+                      CHILLMASTER
+                    </span>
+                  </h1>
+                </div>
+                
+                <div className="flex flex-col mt-2 sm:mt-1 font-poppins text-white/90">
+                  <p className="text-xs md:text-xl lg:text-2xl tracking-[0.45em] font-medium uppercase w-full italic">
+                    THE COMPLETE HVAC SOLUTIONS
+                  </p>
+                </div>
+              </h1>
+            </div>
             <p className="mt-6 text-[13px] md:text-base leading-relaxed text-slate-300 focus-visible: max-w-2xl font-medium">
               At CHILLMASTER, we are your trusted HVAC partner, specializing in providing top-notch heating, ventilation, and air conditioning solutions for both residential and commercial properties. From installation and maintenance to repair and replacement our team of highly skilled technicians is dedicated to delivering excellence in every project we undertake.
             </p>

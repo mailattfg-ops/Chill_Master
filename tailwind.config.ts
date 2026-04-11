@@ -17,6 +17,13 @@ export default {
       fontFamily: {
         heading: ["Outfit", "sans-serif"],
         body: ["Plus Jakarta Sans", "sans-serif"],
+        space: ["Space Grotesk", "sans-serif"],
+        syncopate: ["Syncopate", "sans-serif"],
+        alfa: ["Alfa Slab One", "serif"],
+        chakra: ["Chakra Petch", "sans-serif"],
+        pacifico: ["Pacifico", "cursive"],
+        montserrat: ["Montserrat", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
         mono: ["monospace"],
       },
       colors: {
