@@ -202,7 +202,7 @@
 
   /* High-Fidelity Electric Chill Effect */
   .chill-gloss {
-    @apply select-none font-outfit font-black italic;
+    @apply select-none font-heading font-black italic;
     letter-spacing: -0.02em;
     
     /* Complex Gel Gradient Fill */

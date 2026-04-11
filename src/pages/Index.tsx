@@ -189,7 +189,7 @@ const Index = () => {
             <div className="flex flex-col items-start mb-10">
               <h1 className="flex flex-col items-start leading-none">
                 <div className="relative group">
-                  <h1 className="relative text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-outfit font-black tracking-tight sm:tracking-tighter flex items-center select-none leading-none">
+                  <h1 className="relative text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-heading font-black tracking-tight sm:tracking-tighter flex items-center select-none leading-none">
                     <span 
                       style={{ 
                         textShadow: "0 10px 20px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2)"
@@ -201,8 +201,16 @@ const Index = () => {
                   </h1>
                 </div>
                 
-                <div className="flex flex-col mt-2 sm:mt-1 font-poppins text-white/90">
-                  <p className="text-[10px] xs:text-xs md:text-xl lg:text-2xl tracking-[0.2em] xs:tracking-[0.45em] font-medium uppercase w-full italic whitespace-nowrap">
+                <div className="flex flex-col mt-2 sm:mt-1 font-heading text-white overflow-visible">
+                  <p 
+                    style={{ 
+                      textShadow: "0 2px 4px rgba(0,0,0,0.5), 0 4px 10px rgba(0,0,0,0.3)",
+                      transform: "scaleY(1.25)",
+                      transformOrigin: "left",
+                      wordSpacing: "0.35em"
+                    }}
+                    className="text-[17px] xs:text-base md:text-xl lg:text-2xl tracking-tight xs:tracking-[0.2em] md:tracking-[0.45em] font-black uppercase w-full whitespace-nowrap leading-none py-1"
+                  >
                     THE COMPLETE HVAC SOLUTIONS
                   </p>
                 </div>
