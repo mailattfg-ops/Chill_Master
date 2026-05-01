@@ -74,10 +74,23 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-navy-foreground/10 pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 border-t border-navy-foreground/10 pt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-navy-foreground/40">
             © {new Date().getFullYear()} Chill Master. All rights reserved.
           </p>
+          
+          <p className="text-xs text-navy-foreground/40">
+            Designed & Developed by{" "}
+            <a
+              href="https://www.thinkforgeglobal.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-navy-foreground/60 hover:text-primary transition-colors hover:underline underline-offset-4"
+            >
+              Think Forge Global
+            </a>
+          </p>
+
           <div className="flex gap-4 text-xs text-navy-foreground/40">
             <Link to="/privacy" className="hover:text-navy-foreground/60 transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-navy-foreground/60 transition-colors">Terms</Link>
