@@ -85,7 +85,7 @@ const Footer = () => {
               href="https://www.thinkforgeglobal.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-navy-foreground/60 hover:text-primary transition-colors hover:underline underline-offset-4"
+              className="font-bold text-navy-foreground/80 hover:text-primary transition-colors hover:underline underline-offset-4"
             >
               Think Forge Global
             </a>
